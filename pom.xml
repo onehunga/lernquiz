@@ -12,8 +12,9 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.21</maven.compiler.source>
-        <maven.compiler.target>1.21</maven.compiler.target>
+        <java.version>17</java.version>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
     </properties>
 
     <profiles>
@@ -53,6 +54,14 @@
     <build>
         <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
             <plugins>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>exec-maven-plugin</artifactId>
+                    <version>3.2.0</version>
+                    <configuration>
+                        <mainClass>oop.lernquiz.App</mainClass>
+                    </configuration>
+                </plugin>
                 <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
                 <plugin>
                     <artifactId>maven-clean-plugin</artifactId>
@@ -74,6 +83,26 @@
                 <plugin>
                     <artifactId>maven-jar-plugin</artifactId>
                     <version>3.0.2</version>
+                    <configuration>
+                        <archive>
+                            <manifest>
+                                <mainClass>oop.lernquiz.App</mainClass>
+                            </manifest>
+                        </archive>
+                    </configuration>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>2.2-beta-5</version>
+                    <configuration>
+                        <archive>
+                            <manifest>
+                                <mainClass>oop.lernquiz.App</mainClass>
+                            </manifest>
+                        </archive>
+                    </configuration>
                 </plugin>
                 <plugin>
                     <artifactId>maven-install-plugin</artifactId>

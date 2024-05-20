@@ -19,4 +19,8 @@ public class HomeController implements IController {
 	public void openSchwachstellen() {
 		Navigator.navigateTo("schwachstellen");
 	}
+
+	public void openQuizStarten() {
+		Navigator.navigateTo("quiz-starten");
+	}
 }

@@ -1,11 +1,15 @@
 package oop.lernquiz.navigator;
 
+/**
+ * TODO: implement history
+ */
 public class Navigator {
 	private static ViewController currentController;
-	private static final ViewControllerFactory[] factories = {new HomeViewControllerFactory(), new SchwachstellenViewControllerFactory()};
+	private static final ViewControllerFactory[] factories = {new HomeViewControllerFactory(), new SchwachstellenViewControllerFactory(), new QuizStartenViewControllerFactory()};
 
 	public static void init() {
-		currentController = factories[0].createViewController();
+		// die Zahl im index beschreibt die Startseite
+		currentController = factories[2].createViewController();
 	}
 
 	public static void navigateTo(String target) {

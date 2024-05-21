@@ -10,7 +10,7 @@ public class SchwachstellenViewControllerFactory implements ViewControllerFactor
 	}
 
 	@Override
-	public ViewController createViewController() {
+	public ViewController createViewController(NavigatorProperties properties) {
 		var controller = new SchwachstellenController();
 		var view = new SchwachstellenView();
 

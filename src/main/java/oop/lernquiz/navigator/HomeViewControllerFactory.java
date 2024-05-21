@@ -11,7 +11,7 @@ public class HomeViewControllerFactory implements ViewControllerFactory {
 	}
 
 	@Override
-	public ViewController createViewController() {
+	public ViewController createViewController(NavigatorProperties properties) {
 		var controller = new HomeController();
 		var view = new HomeView();
 

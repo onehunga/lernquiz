@@ -9,16 +9,20 @@ public class Navigator {
 
 	public static void init() {
 		// die Zahl im index beschreibt die Startseite
-		currentController = factories[2].createViewController();
+		currentController = factories[0].createViewController(null);
 	}
 
 	public static void navigateTo(String target) {
+		navigateTo(target, null);
+	}
+
+	public static void navigateTo(String target, NavigatorProperties properties) {
 		currentController.controller().close();
 		currentController.view().dispose();
 
 		for (var factory : factories) {
 			if (factory.getRouteName().equals(target)) {
-				currentController = factory.createViewController();
+				currentController = factory.createViewController(properties);
 			}
 		}
 	}

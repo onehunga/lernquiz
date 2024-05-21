@@ -3,5 +3,5 @@ package oop.lernquiz.navigator;
 public interface ViewControllerFactory {
 	String getRouteName();
 
-	ViewController createViewController();
+	ViewController createViewController(NavigatorProperties properties);
 }

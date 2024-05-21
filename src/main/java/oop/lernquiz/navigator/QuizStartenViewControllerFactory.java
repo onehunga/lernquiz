@@ -10,8 +10,15 @@ public class QuizStartenViewControllerFactory implements ViewControllerFactory {
 	}
 
 	@Override
-	public ViewController createViewController() {
-		var controller = new QuizStartenController();
+	public ViewController createViewController(NavigatorProperties properties) {
+		if(properties == null) {
+			throw new IllegalArgumentException("properties cannot be null");
+		}
+		if(!(properties instanceof QuizStartenProperties)) {
+			throw new IllegalArgumentException("properties must be an instance of QuizStartenProperties");
+		}
+		var props = (QuizStartenProperties) properties;
+		var controller = new QuizStartenController(props.getThemaModelList());
 		var view = new QuizStartenView();
 
 		controller.setView(view);

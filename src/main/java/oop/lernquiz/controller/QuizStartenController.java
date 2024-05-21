@@ -26,7 +26,7 @@ public class QuizStartenController implements IController {
 	}
 
 	public void zurueck() {
-		Navigator.navigateTo("home");
+		Navigator.goBack();
 	}
 
 }

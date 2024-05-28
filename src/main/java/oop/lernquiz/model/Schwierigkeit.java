@@ -1,6 +1,6 @@
 package oop.lernquiz.model;
 
-public enum SchwierigkeitsModel {
+public enum Schwierigkeit {
 	ALLE("Alle"),
 	LEICHT("Leicht"),
 	MITTEL("Mittel"),
@@ -8,7 +8,7 @@ public enum SchwierigkeitsModel {
 
 	private final String displayName;
 
-	SchwierigkeitsModel(String displayName) {
+	Schwierigkeit(String displayName) {
 		this.displayName = displayName;
 	}
 

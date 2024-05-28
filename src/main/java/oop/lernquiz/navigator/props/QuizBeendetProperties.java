@@ -1,19 +1,19 @@
 package oop.lernquiz.navigator.props;
 
-import oop.lernquiz.model.ThemaModel;
+import oop.lernquiz.model.Thema;
 
 public class QuizBeendetProperties implements NavigatorProperties {
-	private ThemaModel thema;
+	private Thema thema;
 	private int fragen;
 	private int falsch;
 
-	public QuizBeendetProperties(ThemaModel thema, int fragen, int falsch) {
+	public QuizBeendetProperties(Thema thema, int fragen, int falsch) {
 		this.thema = thema;
 		this.fragen = fragen;
 		this.falsch = falsch;
 	}
 
-	public ThemaModel getThema() {
+	public Thema getThema() {
 		return thema;
 	}
 

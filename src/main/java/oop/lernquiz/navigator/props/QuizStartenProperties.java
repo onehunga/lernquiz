@@ -1,17 +1,17 @@
 package oop.lernquiz.navigator.props;
 
-import oop.lernquiz.model.ThemaModel;
+import oop.lernquiz.model.Thema;
 
 import java.util.List;
 
 public class QuizStartenProperties implements NavigatorProperties {
-	private List<ThemaModel> themaModelList;
+	private List<Thema> themaModelList;
 
-	public QuizStartenProperties(List<ThemaModel> themaModelList) {
+	public QuizStartenProperties(List<Thema> themaModelList) {
 		this.themaModelList = themaModelList;
 	}
 
-	public List<ThemaModel> getThemaModelList() {
+	public List<Thema> getThemaModelList() {
 		return themaModelList;
 	}
 }

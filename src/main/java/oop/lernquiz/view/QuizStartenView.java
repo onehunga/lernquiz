@@ -2,8 +2,8 @@ package oop.lernquiz.view;
 
 import oop.lernquiz.controller.IController;
 import oop.lernquiz.controller.QuizStartenController;
-import oop.lernquiz.model.SchwierigkeitsModel;
-import oop.lernquiz.model.ThemaModel;
+import oop.lernquiz.model.Schwierigkeit;
+import oop.lernquiz.model.Thema;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
@@ -28,7 +28,9 @@ public class QuizStartenView extends GeneralView implements IView {
 		var starten = new Button(composite, 0);
 		starten.setText("Starten");
 		starten.setBounds(680, 400, 100, 40);
-		starten.addListener(SWT.Selection, event -> controller.startQuiz(themenAuswahl.getSelectionIndex()));
+
+		starten.addListener(SWT.Selection, event -> controller.startQuiz(themenAuswahl.getSelectionIndex(),
+			schwierigkeitsAuswahl.getSelectionIndex()));
 	}
 
 	private void buildThema() {
@@ -47,7 +49,7 @@ public class QuizStartenView extends GeneralView implements IView {
 		schwierigkeitsLabel.pack();
 		schwierigkeitsAuswahl = new Combo(composite, SWT.DROP_DOWN | SWT.BORDER | SWT.READ_ONLY);
 		schwierigkeitsAuswahl.setBounds(150, 70, 150, 40);
-		for (var schwierigkeit : SchwierigkeitsModel.values()) {
+		for (var schwierigkeit : Schwierigkeit.values()) {
 			schwierigkeitsAuswahl.add(schwierigkeit.toString());
 		}
 		schwierigkeitsAuswahl.select(0);
@@ -63,11 +65,11 @@ public class QuizStartenView extends GeneralView implements IView {
 		this.composite.dispose();
 	}
 
-	public void setThemen(List<ThemaModel> themen) {
+	public void setThemen(List<Thema> themen) {
 		this.themenAuswahl.clearSelection();
 		String[] themenNamen = themen
 			.stream()
-			.map(ThemaModel::getName)
+			.map(Thema::getName)
 			.toList()
 			.toArray(new String[0]);
 		this.themenAuswahl.setItems(themenNamen);

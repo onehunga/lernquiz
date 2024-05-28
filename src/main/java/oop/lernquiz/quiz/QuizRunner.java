@@ -2,19 +2,25 @@ package oop.lernquiz.quiz;
 
 import oop.lernquiz.App;
 import oop.lernquiz.model.Frage;
-import oop.lernquiz.model.ThemaModel;
+import oop.lernquiz.model.Schwierigkeit;
+import oop.lernquiz.model.Thema;
 import oop.lernquiz.navigator.Navigator;
 import oop.lernquiz.navigator.props.QuizBeendetProperties;
 import oop.lernquiz.navigator.props.QuizFrageProperties;
 
+import java.util.List;
+
 public class QuizRunner {
-	private ThemaModel themaModel;
+	private Thema themaModel;
+	private List<Frage> fragen;
 	private int lastFrage = 0;
 	private int fragenCounter = 0;
 	private int falscheFrageCounter = 0;
 
-	public QuizRunner(ThemaModel themaModel) {
+	public QuizRunner(Thema themaModel, Schwierigkeit schwierigkeit) {
 		this.themaModel = themaModel;
+
+		this.fragen = filterFragen(themaModel.getFragen(), schwierigkeit);
 	}
 
 	public void frageBeantwortet(Frage frage, boolean richtig) {
@@ -43,16 +49,31 @@ public class QuizRunner {
 	}
 
 	private void stelleFrage() {
-		if (this.lastFrage >= this.themaModel.getFragen().size()) {
-			this.lastFrage = 0;
-		}
-
 		Navigator.navigateTo(
 			"quiz-frage",
 			new QuizFrageProperties(
 				this,
-				this.themaModel.getFragen().get(this.lastFrage++)
+				this.getNextFrage()
 			)
 		);
+	}
+
+	private Frage getNextFrage() {
+		if (this.lastFrage >= this.fragen.size()) {
+			this.lastFrage = 0;
+		}
+
+		return fragen.get(this.lastFrage++);
+	}
+
+	private List<Frage> filterFragen(List<Frage> fragen, Schwierigkeit schwierigkeit) {
+		if (schwierigkeit == Schwierigkeit.ALLE) {
+			return fragen;
+		}
+
+		return fragen
+			.stream()
+			.filter(frage -> frage.getSchwierigkeit() == schwierigkeit)
+			.toList();
 	}
 }

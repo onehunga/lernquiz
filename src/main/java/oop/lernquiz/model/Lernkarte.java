@@ -1,4 +1,4 @@
 package oop.lernquiz.model;
 
-public class LernkarteModel {
+public class Lernkarte {
 }

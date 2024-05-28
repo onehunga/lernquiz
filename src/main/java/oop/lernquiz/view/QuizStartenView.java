@@ -28,6 +28,7 @@ public class QuizStartenView extends GeneralView implements IView {
 		var starten = new Button(composite, 0);
 		starten.setText("Starten");
 		starten.setBounds(680, 400, 100, 40);
+		starten.addListener(SWT.Selection, event -> controller.startQuiz(themenAuswahl.getSelectionIndex()));
 	}
 
 	private void buildThema() {

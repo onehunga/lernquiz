@@ -1,4 +1,4 @@
-package oop.lernquiz.navigator;
+package oop.lernquiz.navigator.props;
 
 import oop.lernquiz.model.ThemaModel;
 

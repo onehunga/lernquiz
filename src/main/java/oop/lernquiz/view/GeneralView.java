@@ -16,4 +16,8 @@ public abstract class GeneralView {
 	}
 
 	abstract protected void buildUI();
+
+	protected void rePack() {
+		this.composite.pack();
+	}
 }

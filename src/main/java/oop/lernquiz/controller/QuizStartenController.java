@@ -2,13 +2,13 @@ package oop.lernquiz.controller;
 
 import oop.lernquiz.model.ThemaModel;
 import oop.lernquiz.navigator.Navigator;
+import oop.lernquiz.quiz.QuizRunner;
 import oop.lernquiz.view.IView;
 import oop.lernquiz.view.QuizStartenView;
 
 import java.util.List;
 
 public class QuizStartenController implements IController {
-
 	private List<ThemaModel> themaModelList;
 
 	public QuizStartenController(List<ThemaModel> themaModelList) {
@@ -27,6 +27,11 @@ public class QuizStartenController implements IController {
 
 	public void zurueck() {
 		Navigator.goBack();
+	}
+
+	public void startQuiz(int themaIndex) {
+		var thema = this.themaModelList.get(themaIndex);
+		new QuizRunner(thema).quizStarten();
 	}
 
 }

@@ -1,6 +1,8 @@
 package oop.lernquiz.navigator;
 
 import oop.lernquiz.controller.QuizStartenController;
+import oop.lernquiz.navigator.props.NavigatorProperties;
+import oop.lernquiz.navigator.props.QuizStartenProperties;
 import oop.lernquiz.view.QuizStartenView;
 
 public class QuizStartenViewControllerFactory implements ViewControllerFactory {

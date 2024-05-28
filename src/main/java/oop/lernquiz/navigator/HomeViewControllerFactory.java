@@ -1,6 +1,7 @@
 package oop.lernquiz.navigator;
 
 import oop.lernquiz.controller.HomeController;
+import oop.lernquiz.navigator.props.NavigatorProperties;
 import oop.lernquiz.view.HomeView;
 
 public class HomeViewControllerFactory implements ViewControllerFactory {

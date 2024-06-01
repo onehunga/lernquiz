@@ -12,19 +12,19 @@ import java.util.List;
 
 public class QuizRunner {
 	private Thema themaModel;
-	private List<Frage> fragen;
-	private int lastFrage = 0;
+	private FragenFilter filter;
 	private int fragenCounter = 0;
 	private int falscheFrageCounter = 0;
 
 	public QuizRunner(Thema themaModel, Schwierigkeit schwierigkeit) {
 		this.themaModel = themaModel;
 
-		this.fragen = filterFragen(themaModel.getFragen(), schwierigkeit);
+		var fragen = filterFragen(themaModel.getFragen(), schwierigkeit);
+		this.filter = new FragenFilter(fragen);
 	}
 
 	public void frageBeantwortet(Frage frage, boolean richtig) {
-		frage.setRate(frage.getRate() + (richtig ? 1 : -1));
+		this.filter.beantworte(frage, richtig);
 		if (!richtig) {
 			this.falscheFrageCounter++;
 		}
@@ -45,6 +45,7 @@ public class QuizRunner {
 	}
 
 	public void quizBeenden() {
+		this.filter.zustand();
 		Navigator.navigateTo("quiz-beendet", new QuizBeendetProperties(this.themaModel, this.fragenCounter, this.falscheFrageCounter));
 	}
 
@@ -59,11 +60,7 @@ public class QuizRunner {
 	}
 
 	private Frage getNextFrage() {
-		if (this.lastFrage >= this.fragen.size()) {
-			this.lastFrage = 0;
-		}
-
-		return fragen.get(this.lastFrage++);
+		return filter.nextFrage();
 	}
 
 	private List<Frage> filterFragen(List<Frage> fragen, Schwierigkeit schwierigkeit) {

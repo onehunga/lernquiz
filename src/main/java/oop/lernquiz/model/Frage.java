@@ -6,7 +6,7 @@ public class Frage {
 	private String frage;
 	private ArrayList<Antwort> antworten;
 	private Schwierigkeit schwierigkeit;
-	private long rate = 0;
+	private long gewicht = 1;
 
 	public Frage(String frage, ArrayList<Antwort> antworten, Schwierigkeit schwierigkeit) {
 		this.frage = frage;
@@ -26,11 +26,13 @@ public class Frage {
 		return schwierigkeit;
 	}
 
-	public long getRate() {
-		return rate;
+	public long getGewicht() {
+		return gewicht;
 	}
 
-	public void setRate(long rate) {
-		this.rate = rate;
+	public void setGewicht(long gewicht) {
+		if(gewicht > 0) {
+			this.gewicht = gewicht;
+		}
 	}
 }

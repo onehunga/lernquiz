@@ -2,17 +2,26 @@ package oop.lernquiz.quiz;
 
 import oop.lernquiz.App;
 import oop.lernquiz.model.Frage;
+import oop.lernquiz.model.Lernkarte;
 import oop.lernquiz.model.Schwierigkeit;
 import oop.lernquiz.model.Thema;
 import oop.lernquiz.navigator.Navigator;
+import oop.lernquiz.navigator.props.LernkarteProps;
 import oop.lernquiz.navigator.props.QuizBeendetProperties;
 import oop.lernquiz.navigator.props.QuizFrageProperties;
 
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class QuizRunner {
+	/**
+	 * Wahrscheinlichkeit im format von 1/x
+	 */
+	private static final int WAHRSCHEINLICHKEIT = 10;
+
 	private Thema themaModel;
 	private FragenFilter filter;
+	private LernkarteFilter lernkarteFilter;
 	private int fragenCounter = 0;
 	private int falscheFrageCounter = 0;
 
@@ -21,6 +30,8 @@ public class QuizRunner {
 
 		var fragen = filterFragen(themaModel.getFragen(), schwierigkeit);
 		this.filter = new FragenFilter(fragen);
+
+		this.lernkarteFilter = new LernkarteFilter(themaModel.getLernkarten());
 	}
 
 	public void frageBeantwortet(Frage frage, boolean richtig) {
@@ -30,14 +41,13 @@ public class QuizRunner {
 		}
 		this.fragenCounter++;
 
-		new Thread(() -> {
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException ignored) {
-				Thread.currentThread().interrupt();
-			}
-			App.getInstance().getWindow().getDisplay().syncExec(this::stelleFrage);
-		}).start();
+		App.getInstance().syncExecDelayed(this::stelleFrage, 1000);
+	}
+
+	public void lernkarteBeantwortet(Lernkarte lernkarte, long bewertung) {
+		this.lernkarteFilter.bewerten(lernkarte, bewertung);
+
+		this.stelleFrage();
 	}
 
 	public void quizStarten() {
@@ -45,18 +55,23 @@ public class QuizRunner {
 	}
 
 	public void quizBeenden() {
-		this.filter.zustand();
-		Navigator.navigateTo("quiz-beendet", new QuizBeendetProperties(this.themaModel, this.fragenCounter, this.falscheFrageCounter));
+		// this.filter.zustand();
+		Navigator.navigateTo("quiz-beendet",
+				new QuizBeendetProperties(this.themaModel, this.fragenCounter, this.falscheFrageCounter));
 	}
 
 	private void stelleFrage() {
-		Navigator.navigateTo(
-			"quiz-frage",
-			new QuizFrageProperties(
-				this,
-				this.getNextFrage()
-			)
-		);
+		if (this.istLernkarte()) {
+			var lernkarte = this.getLernkarte();
+
+			Navigator.navigateTo("lernkarte", new LernkarteProps(lernkarte, this));
+		} else {
+			Navigator.navigateTo(
+					"quiz-frage",
+					new QuizFrageProperties(
+							this,
+							this.getNextFrage()));
+		}
 	}
 
 	private Frage getNextFrage() {
@@ -69,8 +84,26 @@ public class QuizRunner {
 		}
 
 		return fragen
-			.stream()
-			.filter(frage -> frage.getSchwierigkeit() == schwierigkeit)
-			.toList();
+				.stream()
+				.filter(frage -> frage.getSchwierigkeit() == schwierigkeit)
+				.toList();
+	}
+
+	/**
+	* gibt an ob, eine Lernkarte, statt einer Frage angezeigt werden soll.
+	*/
+	private boolean istLernkarte() {
+		return true;
+		/*
+		if(this.themaModel.getLernkarten().isEmpty()) {
+			return false;
+		}
+
+		return ThreadLocalRandom.current().nextInt(WAHRSCHEINLICHKEIT) == 0;
+		 */
+	}
+
+	private Lernkarte getLernkarte() {
+		return this.lernkarteFilter.getLernkarte();
 	}
 }

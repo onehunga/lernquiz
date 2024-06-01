@@ -1,9 +1,6 @@
 package oop.lernquiz.store;
 
-import oop.lernquiz.model.Antwort;
-import oop.lernquiz.model.Frage;
-import oop.lernquiz.model.Schwierigkeit;
-import oop.lernquiz.model.Thema;
+import oop.lernquiz.model.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +15,11 @@ public class ThemaStore {
 
 		this.themaList.add(new Thema("Geographie", "geo"));
 		this.themaList.add(new Thema("Naturwissenschaften", "Naturwissenschaften"));
+
+		this.themaList.get(0).getLernkarten().addAll(List.of(
+			new Lernkarte("Lernkarte A", "blah blah blah"),
+			new Lernkarte("Lernkarte B", "blah blah blah blah")
+		));
 
 		this.themaList.get(0).getFragen().addAll(List.of(
 			new Frage("Wie heißt der Höchste Berg der Welt?", new ArrayList<>(List.of(

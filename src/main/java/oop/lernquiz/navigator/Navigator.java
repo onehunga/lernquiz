@@ -14,6 +14,9 @@ public class Navigator {
 		new QuizStartenViewControllerFactory(),
 		new QuizFrageViewControllerFactory(),
 		new QuizBeendetViewControllerFactory(),
+		new LernkarteViewControllerFactory(),
+		new LernkarteBeantwortenViewControllerFactory(),
+		new LernkarteBewertenViewControllerFactory(),
 	};
 
 	// Der Index des Aktuell aktiven controllers.

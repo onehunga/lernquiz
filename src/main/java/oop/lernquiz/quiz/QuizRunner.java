@@ -93,14 +93,11 @@ public class QuizRunner {
 	* gibt an ob, eine Lernkarte, statt einer Frage angezeigt werden soll.
 	*/
 	private boolean istLernkarte() {
-		return true;
-		/*
 		if(this.themaModel.getLernkarten().isEmpty()) {
 			return false;
 		}
 
 		return ThreadLocalRandom.current().nextInt(WAHRSCHEINLICHKEIT) == 0;
-		 */
 	}
 
 	private Lernkarte getLernkarte() {

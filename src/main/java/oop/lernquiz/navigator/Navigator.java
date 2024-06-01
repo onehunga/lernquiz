@@ -1,5 +1,7 @@
 package oop.lernquiz.navigator;
 
+import oop.lernquiz.navigator.props.NavigatorProperties;
+
 import java.util.Stack;
 
 public class Navigator {
@@ -9,7 +11,12 @@ public class Navigator {
 	private static final ViewControllerFactory[] factories = {
 		new HomeViewControllerFactory(),
 		new SchwachstellenViewControllerFactory(),
-		new QuizStartenViewControllerFactory()
+		new QuizStartenViewControllerFactory(),
+		new QuizFrageViewControllerFactory(),
+		new QuizBeendetViewControllerFactory(),
+		new LernkarteViewControllerFactory(),
+		new LernkarteBeantwortenViewControllerFactory(),
+		new LernkarteBewertenViewControllerFactory(),
 	};
 
 	// Der Index des Aktuell aktiven controllers.

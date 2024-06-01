@@ -1,6 +1,7 @@
 package oop.lernquiz.navigator;
 
 import oop.lernquiz.controller.SchwachstellenController;
+import oop.lernquiz.navigator.props.NavigatorProperties;
 import oop.lernquiz.view.SchwachstellenView;
 
 public class SchwachstellenViewControllerFactory implements ViewControllerFactory {

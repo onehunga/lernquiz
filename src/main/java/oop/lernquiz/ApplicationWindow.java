@@ -26,6 +26,10 @@ public class ApplicationWindow {
 		}
 	}
 
+	public Display getDisplay() {
+		return display;
+	}
+
 	public Shell getShell() {
 		return this.shell;
 	}

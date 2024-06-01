@@ -1,12 +1,10 @@
 package oop.lernquiz.controller;
 
-import oop.lernquiz.model.ThemaModel;
 import oop.lernquiz.navigator.Navigator;
-import oop.lernquiz.navigator.QuizStartenProperties;
+import oop.lernquiz.navigator.props.QuizStartenProperties;
+import oop.lernquiz.store.ThemaStore;
 import oop.lernquiz.view.HomeView;
 import oop.lernquiz.view.IView;
-
-import java.util.List;
 
 public class HomeController implements IController {
 	HomeView view;
@@ -25,11 +23,6 @@ public class HomeController implements IController {
 	}
 
 	public void openQuizStarten() {
-		Navigator.navigateTo("quiz-starten", new QuizStartenProperties(List.of(
-			new ThemaModel("Geographie", "geo"),
-			new ThemaModel("Java 17", "beste Programmiersprache der Welt!!!"),
-			new ThemaModel("Biologie", "bio"),
-			new ThemaModel("Geschichte", "geschi")
-		)));
+		Navigator.navigateTo("quiz-starten", new QuizStartenProperties(ThemaStore.getInstance().getThemen()));
 	}
 }

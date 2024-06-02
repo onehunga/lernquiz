@@ -6,6 +6,8 @@ import oop.lernquiz.navigator.props.QuizFrageProperties;
 import oop.lernquiz.quiz.QuizRunner;
 import oop.lernquiz.view.QuizFrageView;
 
+import java.util.Collections;
+
 public class QuizFrageController extends Controller<QuizFrageView> {
 	private QuizRunner quizRunner;
 	private Frage frage;
@@ -19,6 +21,7 @@ public class QuizFrageController extends Controller<QuizFrageView> {
 	public void setView(QuizFrageView view) {
 		super.setView(view);
 
+		Collections.shuffle(this.frage.getAntworten());
 		this.view.setFrage(this.frage);
 
 		if (quizRunner.isTimed()) {

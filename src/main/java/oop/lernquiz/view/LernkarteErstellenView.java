@@ -1,6 +1,5 @@
 package oop.lernquiz.view;
 
-import oop.lernquiz.controller.IController;
 import oop.lernquiz.controller.LernkarteErstellenController;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Button;
@@ -45,10 +44,5 @@ public class LernkarteErstellenView extends View<LernkarteErstellenController> {
 		erstellen.setText("Erstellen");
 		erstellen.setBounds(680, 400, 100, 40);
 		erstellen.addListener(SWT.Selection, ev -> controller.erstellen(name.getText(), inhalt.getText()));
-	}
-
-	@Override
-	public void setController(IController controller) {
-
 	}
 }

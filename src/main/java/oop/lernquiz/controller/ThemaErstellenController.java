@@ -2,7 +2,6 @@ package oop.lernquiz.controller;
 
 import oop.lernquiz.navigator.Navigator;
 import oop.lernquiz.store.ThemaStore;
-import oop.lernquiz.view.IView;
 import oop.lernquiz.view.ThemaErstellenView;
 
 public class ThemaErstellenController extends Controller<ThemaErstellenView> {
@@ -16,10 +15,5 @@ public class ThemaErstellenController extends Controller<ThemaErstellenView> {
 		}
 
 		Navigator.goBack();
-	}
-
-	@Override
-	public void setView(IView view) {
-
 	}
 }

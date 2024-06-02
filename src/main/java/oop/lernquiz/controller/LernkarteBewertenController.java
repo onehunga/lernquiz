@@ -1,11 +1,9 @@
 package oop.lernquiz.controller;
 
 import oop.lernquiz.navigator.props.LernkarteProps;
-import oop.lernquiz.view.IView;
 import oop.lernquiz.view.LernkarteBewertenView;
 
-public class LernkarteBewertenController implements IController {
-	private LernkarteBewertenView view;
+public class LernkarteBewertenController extends Controller<LernkarteBewertenView> {
 	private LernkarteProps props;
 
 	public LernkarteBewertenController(LernkarteProps props) {
@@ -17,8 +15,8 @@ public class LernkarteBewertenController implements IController {
 	}
 
 	@Override
-	public void setView(IView view) {
-		this.view = (LernkarteBewertenView) view;
+	public void setView(LernkarteBewertenView view) {
+		super.setView(view);
 
 		this.view.setAntwortText(props.getAntwort().orElseThrow());
 		this.view.setKartenText(props.getLernkarte().getVorderseite());

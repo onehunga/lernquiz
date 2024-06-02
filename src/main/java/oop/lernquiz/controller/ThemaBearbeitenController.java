@@ -4,7 +4,6 @@ import oop.lernquiz.navigator.Navigator;
 import oop.lernquiz.navigator.props.ThemaBearbeitungsProperties;
 import oop.lernquiz.store.Storage;
 import oop.lernquiz.store.ThemaStore;
-import oop.lernquiz.view.IView;
 import oop.lernquiz.view.ThemaBearbeitenView;
 
 public class ThemaBearbeitenController extends Controller<ThemaBearbeitenView> {
@@ -39,9 +38,5 @@ public class ThemaBearbeitenController extends Controller<ThemaBearbeitenView> {
 		super.setView(view);
 
 		this.view.setFragen(this.props.getThema().getFragen());
-	}
-
-	@Override
-	public void setView(IView view) {
 	}
 }

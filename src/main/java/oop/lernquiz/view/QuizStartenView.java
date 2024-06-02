@@ -1,19 +1,22 @@
 package oop.lernquiz.view;
 
-import oop.lernquiz.controller.IController;
 import oop.lernquiz.controller.QuizStartenController;
 import oop.lernquiz.model.Schwierigkeit;
 import oop.lernquiz.model.Thema;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
+import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 
 import java.util.List;
 
-public class QuizStartenView extends GeneralView implements IView {
-	QuizStartenController controller;
+public class QuizStartenView extends View<QuizStartenController> {
 	Combo themenAuswahl, schwierigkeitsAuswahl;
+
+	protected QuizStartenView(Composite composite) {
+		super(composite);
+	}
 
 	@Override
 	protected void buildUI() {
@@ -53,16 +56,6 @@ public class QuizStartenView extends GeneralView implements IView {
 			schwierigkeitsAuswahl.add(schwierigkeit.toString());
 		}
 		schwierigkeitsAuswahl.select(0);
-	}
-
-	@Override
-	public void setController(IController controller) {
-		this.controller = (QuizStartenController) controller;
-	}
-
-	@Override
-	public void dispose() {
-		this.composite.dispose();
 	}
 
 	public void setThemen(List<Thema> themen) {

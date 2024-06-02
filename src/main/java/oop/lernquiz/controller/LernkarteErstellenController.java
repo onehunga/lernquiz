@@ -4,7 +4,6 @@ import oop.lernquiz.model.Lernkarte;
 import oop.lernquiz.navigator.Navigator;
 import oop.lernquiz.navigator.props.ThemaBearbeitungsProperties;
 import oop.lernquiz.store.ThemaStore;
-import oop.lernquiz.view.IView;
 import oop.lernquiz.view.LernkarteErstellenView;
 
 public class LernkarteErstellenController extends Controller<LernkarteErstellenView> {
@@ -26,10 +25,5 @@ public class LernkarteErstellenController extends Controller<LernkarteErstellenV
 
 	public void abbrechen() {
 		Navigator.navigateTo("thema-bearbeiten", this.props);
-	}
-
-	@Override
-	public void setView(IView view) {
-
 	}
 }

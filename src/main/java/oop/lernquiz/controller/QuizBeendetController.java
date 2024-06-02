@@ -2,11 +2,9 @@ package oop.lernquiz.controller;
 
 import oop.lernquiz.navigator.Navigator;
 import oop.lernquiz.navigator.props.QuizBeendetProperties;
-import oop.lernquiz.view.IView;
 import oop.lernquiz.view.QuizBeendetView;
 
-public class QuizBeendetController implements IController {
-	private QuizBeendetView quizBeendetView;
+public class QuizBeendetController extends Controller<QuizBeendetView> {
 	private QuizBeendetProperties properties;
 
 	public QuizBeendetController(QuizBeendetProperties quizBeendetProperties) {
@@ -18,17 +16,13 @@ public class QuizBeendetController implements IController {
 	}
 
 	@Override
-	public void setView(IView view) {
-		this.quizBeendetView = (QuizBeendetView) view;
+	public void setView(QuizBeendetView view) {
+		super.setView(view);
 
-		this.quizBeendetView.setThema(this.properties.getThema().getName());
+		this.view.setThema(this.properties.getThema().getName());
 
 		final int fragen = this.properties.getFragen();
 		final int falscheFragen = this.properties.getFalsch();
-		this.quizBeendetView.setFragen(fragen, fragen - falscheFragen, falscheFragen);
-	}
-
-	@Override
-	public void close() {
+		this.view.setFragen(fragen, fragen - falscheFragen, falscheFragen);
 	}
 }

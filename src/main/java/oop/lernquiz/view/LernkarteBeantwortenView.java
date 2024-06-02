@@ -1,6 +1,5 @@
 package oop.lernquiz.view;
 
-import oop.lernquiz.controller.IController;
 import oop.lernquiz.controller.LernkarteBeantwortenController;
 import oop.lernquiz.util.ElementCenter;
 import org.eclipse.swt.SWT;
@@ -10,10 +9,12 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Text;
 
-public class LernkarteBeantwortenView extends GeneralView implements IView {
-	private LernkarteBeantwortenController controller;
-
+public class LernkarteBeantwortenView extends View<LernkarteBeantwortenController> {
 	private Text antwortText;
+
+	protected LernkarteBeantwortenView(Composite composite) {
+		super(composite);
+	}
 
 	@Override
 	protected void buildUI() {
@@ -35,11 +36,6 @@ public class LernkarteBeantwortenView extends GeneralView implements IView {
 		beendenButton.addListener(SWT.Selection, ignored -> this.controller.abbrechen());
 		beendenButton.setText("Beenden");
 		beendenButton.setBounds(680, 400, 100, 40);
-	}
-
-	@Override
-	public void setController(IController controller) {
-		this.controller = (LernkarteBeantwortenController) controller;
 	}
 
 	@Override

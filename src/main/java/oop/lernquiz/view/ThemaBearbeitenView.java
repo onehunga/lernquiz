@@ -1,15 +1,11 @@
 package oop.lernquiz.view;
 
-import oop.lernquiz.controller.IController;
 import oop.lernquiz.controller.ThemaBearbeitenController;
 import oop.lernquiz.model.Frage;
-import oop.lernquiz.util.ElementCenter;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.layout.RowData;
-import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.*;
 
 import java.util.List;
@@ -90,10 +86,5 @@ public class ThemaBearbeitenView extends View<ThemaBearbeitenController> {
 		scroll.setExpandHorizontal(true);
 		scroll.setExpandVertical(true);
 		scroll.setMinSize(fragenListe.computeSize(SWT.DEFAULT, SWT.DEFAULT));
-	}
-
-	@Override
-	public void setController(IController controller) {
-
 	}
 }

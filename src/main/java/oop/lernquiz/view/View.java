@@ -3,7 +3,7 @@ package oop.lernquiz.view;
 import oop.lernquiz.controller.Controller;
 import org.eclipse.swt.widgets.Composite;
 
-public abstract class View<C extends Controller<?>> implements IView {
+public abstract class View<C extends Controller<?>> {
 	protected C controller;
 	protected Composite composite;
 
@@ -20,7 +20,11 @@ public abstract class View<C extends Controller<?>> implements IView {
 		this.controller = controller;
 	}
 
-	@Override
 	public void dispose() {
 		this.composite.dispose();
-	}}
+	}
+
+	protected void rePack() {
+		this.composite.pack();
+	}
+}

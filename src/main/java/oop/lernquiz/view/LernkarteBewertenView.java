@@ -1,17 +1,19 @@
 package oop.lernquiz.view;
 
-import oop.lernquiz.controller.IController;
 import oop.lernquiz.controller.LernkarteBewertenController;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Text;
 
-public class LernkarteBewertenView extends GeneralView implements IView {
-	private LernkarteBewertenController controller;
-
+public class LernkarteBewertenView extends View<LernkarteBewertenController> {
 	private Text kartenText;
 	private Text antwortText;
 	private Text bewertenText;
+
+	protected LernkarteBewertenView(Composite composite) {
+		super(composite);
+	}
 
 	@Override
 	protected void buildUI() {
@@ -67,11 +69,6 @@ public class LernkarteBewertenView extends GeneralView implements IView {
 	public void setAntwortText(String text) {
 		this.antwortText.setText(text);
 		this.antwortText.pack();
-	}
-
-	@Override
-	public void setController(IController controller) {
-		this.controller = (LernkarteBewertenController) controller;
 	}
 
 	@Override

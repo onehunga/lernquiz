@@ -1,24 +1,26 @@
 package oop.lernquiz.view;
 
-import oop.lernquiz.controller.IController;
 import oop.lernquiz.controller.QuizFrageController;
 import oop.lernquiz.model.Frage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 
 import java.util.ArrayList;
 
-public class QuizFrageView extends GeneralView implements IView {
+public class QuizFrageView extends View<QuizFrageController> {
 	private static final Color RICHTIGE_FARBE = new Color(53, 252, 35, 255);
 	private static final Color FALSCHE_FARBE = new Color(252, 42, 63, 255);
-
-	private QuizFrageController controller;
 
 	Label fragenLabel;
 	ArrayList<Button> korrekteButtons = new ArrayList<>();
 	Button clickedButton;
+
+	protected QuizFrageView(Composite composite) {
+		super(composite);
+	}
 
 	@Override
 	protected void buildUI() {
@@ -28,11 +30,6 @@ public class QuizFrageView extends GeneralView implements IView {
 		beendenButton.addListener(SWT.Selection, ignored -> this.controller.quizBeenden());
 		beendenButton.setText("Beenden");
 		beendenButton.setBounds(680, 400, 100, 40);
-	}
-
-	@Override
-	public void setController(IController controller) {
-		this.controller = (QuizFrageController) controller;
 	}
 
 	/**
@@ -88,14 +85,5 @@ public class QuizFrageView extends GeneralView implements IView {
 		}
 
 		rePack();
-	}
-
-	void quizBeenden() {
-		this.controller.quizBeenden();
-	}
-
-	@Override
-	public void dispose() {
-		this.composite.dispose();
 	}
 }

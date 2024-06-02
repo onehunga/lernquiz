@@ -4,7 +4,6 @@ import oop.lernquiz.model.Thema;
 import oop.lernquiz.navigator.Navigator;
 import oop.lernquiz.navigator.props.ThemaBearbeitungsProperties;
 import oop.lernquiz.store.ThemaStore;
-import oop.lernquiz.view.IView;
 import oop.lernquiz.view.ThemenView;
 
 public class ThemenController extends Controller<ThemenView> {
@@ -27,10 +26,5 @@ public class ThemenController extends Controller<ThemenView> {
 		super.setView(view);
 
 		view.setThemen(ThemaStore.getInstance().getThemen());
-	}
-
-	@Override
-	public void setView(IView view) {
-
 	}
 }

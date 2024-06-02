@@ -5,11 +5,9 @@ import oop.lernquiz.model.Lernkarte;
 import oop.lernquiz.navigator.Navigator;
 import oop.lernquiz.navigator.props.LernkarteProps;
 import oop.lernquiz.quiz.QuizRunner;
-import oop.lernquiz.view.IView;
 import oop.lernquiz.view.LernkarteView;
 
-public class LernkarteController implements IController {
-	private LernkarteView view;
+public class LernkarteController extends Controller<LernkarteView> {
 	private Lernkarte lernkarte;
 	private QuizRunner quizRunner;
 
@@ -23,8 +21,8 @@ public class LernkarteController implements IController {
 	}
 
 	@Override
-	public void setView(IView view) {
-		this.view = (LernkarteView) view;
+	public void setView(LernkarteView view) {
+		super.setView(view);
 
 		this.view.setTitel(lernkarte.getName());
 		this.view.setVorderseite(lernkarte.getVorderseite());

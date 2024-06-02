@@ -1,14 +1,6 @@
 package oop.lernquiz.controller;
 
-import oop.lernquiz.view.IView;
+import oop.lernquiz.view.SchwachstellenView;
 
-public class SchwachstellenController implements IController {
-	@Override
-	public void setView(IView view) {
-	}
-
-	@Override
-	public void close() {
-
-	}
+public class SchwachstellenController extends Controller<SchwachstellenView> {
 }

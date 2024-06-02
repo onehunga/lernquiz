@@ -1,7 +1,7 @@
 package oop.lernquiz.navigator;
 
-import oop.lernquiz.controller.IController;
-import oop.lernquiz.view.IView;
+import oop.lernquiz.controller.Controller;
+import oop.lernquiz.view.View;
 
-public record ViewController(IController controller, IView view) {
+public record ViewController(Controller<?> controller, View<?> view) {
 }

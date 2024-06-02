@@ -3,12 +3,9 @@ package oop.lernquiz.controller;
 import oop.lernquiz.model.Frage;
 import oop.lernquiz.navigator.props.QuizFrageProperties;
 import oop.lernquiz.quiz.QuizRunner;
-import oop.lernquiz.view.IView;
 import oop.lernquiz.view.QuizFrageView;
 
-public class QuizFrageController implements IController {
-	private QuizFrageView view;
-
+public class QuizFrageController extends Controller<QuizFrageView> {
 	private QuizRunner quizRunner;
 	private Frage frage;
 
@@ -18,8 +15,8 @@ public class QuizFrageController implements IController {
 	}
 
 	@Override
-	public void setView(IView view) {
-		this.view = (QuizFrageView) view;
+	public void setView(QuizFrageView view) {
+		super.setView(view);
 
 		this.view.setFrage(this.frage);
 	}
@@ -36,9 +33,5 @@ public class QuizFrageController implements IController {
 
 	public void quizBeenden() {
 		this.quizRunner.quizBeenden();
-	}
-
-	@Override
-	public void close() {
 	}
 }

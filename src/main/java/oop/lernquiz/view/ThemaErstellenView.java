@@ -1,6 +1,5 @@
 package oop.lernquiz.view;
 
-import oop.lernquiz.controller.IController;
 import oop.lernquiz.controller.ThemaErstellenController;
 import oop.lernquiz.util.ElementCenter;
 import org.eclipse.swt.SWT;
@@ -34,9 +33,5 @@ public class ThemaErstellenView extends View<ThemaErstellenController> {
 		erstellen.addListener(SWT.Selection, ev -> {
 			controller.erstellen(themaElement.getText());
 		});
-	}
-
-	@Override
-	public void setController(IController controller) {
 	}
 }

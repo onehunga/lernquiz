@@ -1,6 +1,5 @@
 package oop.lernquiz.view;
 
-import oop.lernquiz.controller.IController;
 import oop.lernquiz.controller.ThemenController;
 import oop.lernquiz.model.Thema;
 import oop.lernquiz.util.ElementCenter;
@@ -74,10 +73,5 @@ public class ThemenView extends View<ThemenController> {
 		felder[0].pack();
 		felder[1].pack();
 		this.themen.pack();
-	}
-
-	@Override
-	public void setController(IController controller) {
-
 	}
 }

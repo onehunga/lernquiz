@@ -1,7 +1,6 @@
 package oop.lernquiz.view;
 
 import oop.lernquiz.controller.FrageErstellenController;
-import oop.lernquiz.controller.IController;
 import oop.lernquiz.model.Schwierigkeit;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.*;
@@ -100,9 +99,5 @@ public class FrageErstellenView extends View<FrageErstellenController> {
 			falscheAntwort[1].getText(),
 			falscheAntwort[2].getText()
 		};
-	}
-
-	@Override
-	public void setController(IController controller) {
 	}
 }

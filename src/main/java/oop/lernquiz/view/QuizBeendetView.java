@@ -1,23 +1,25 @@
 package oop.lernquiz.view;
 
-import oop.lernquiz.controller.IController;
 import oop.lernquiz.controller.QuizBeendetController;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 
-public class QuizBeendetView extends GeneralView implements IView {
+public class QuizBeendetView extends View<QuizBeendetController> {
 	private static final String THEMA_TEMPLATE = "Thema: %s";
 	private static final String FRAGEN_TEMPLATE = "Fragen beantwortet:\t%d";
 	private static final String RICHTIGE_FRAGEN_TEMPLATE = "Davon Richtig:\t\t\t%d";
 	private static final String FALSCHE_FRAGEN_TEMPLATE = "Davon Falsch:\t\t\t%d";
 
-	private QuizBeendetController controller;
-
 	private Label themaLabel;
 	private Label fragenLabel;
 	private Label richtigeFragenLabel;
 	private Label falscheFragenLabel;
+
+	protected QuizBeendetView(Composite composite) {
+		super(composite);
+	}
 
 	@Override
 	protected void buildUI() {
@@ -52,12 +54,6 @@ public class QuizBeendetView extends GeneralView implements IView {
 		this.richtigeFragenLabel.pack();
 		this.falscheFragenLabel.pack();
 	}
-
-	@Override
-	public void setController(IController controller) {
-		this.controller = (QuizBeendetController) controller;
-	}
-
 
 	@Override
 	public void dispose() {

@@ -11,19 +11,19 @@ public class Navigator {
 	private static final Stack<Integer> history = new Stack<>();
 	private static ViewController currentController;
 	private static final ViewControllerFactory[] factories = {
-		new HomeViewControllerFactory(),
-		new SchwachstellenViewControllerFactory(),
-		new QuizStartenViewControllerFactory(),
-		new QuizFrageViewControllerFactory(),
-		new QuizBeendetViewControllerFactory(),
-		new LernkarteViewControllerFactory(),
-		new LernkarteBeantwortenViewControllerFactory(),
-		new LernkarteBewertenViewControllerFactory(),
-		new GeneralViewControllerFactory<>(ThemenController.class, ThemenView.class, "themen"),
-		new GeneralViewControllerFactory<>(FrageErstellenController.class, FrageErstellenView.class, "frage-erstellen"),
-		new GeneralViewControllerFactory<>(LernkarteErstellenController.class, LernkarteErstellenView.class, "lernkarte-erstellen"),
-		new GeneralViewControllerFactory<>(ThemaBearbeitenController.class, ThemaBearbeitenView.class, "thema-bearbeiten"),
-		new GeneralViewControllerFactory<>(ThemaErstellenController.class, ThemaErstellenView.class, "thema-erstellen"),
+		new ViewControllerFactory<>(HomeController.class, HomeView.class, "home"),
+		new ViewControllerFactory<>(SchwachstellenController.class, SchwachstellenView.class, "schwachstellen"),
+		new ViewControllerFactory<>(QuizStartenController.class, QuizStartenView.class, "quiz-starten"),
+		new ViewControllerFactory<>(QuizFrageController.class, QuizFrageView.class, "quiz-frage"),
+		new ViewControllerFactory<>(QuizBeendetController.class, QuizBeendetView.class, "quiz-beendet"),
+		new ViewControllerFactory<>(LernkarteController.class, LernkarteView.class, "lernkarte"),
+		new ViewControllerFactory<>(LernkarteBeantwortenController.class, LernkarteBeantwortenView.class, "lernkarte-beantworten"),
+		new ViewControllerFactory<>(LernkarteBewertenController.class, LernkarteBewertenView.class, "lernkarte-bewerten"),
+		new ViewControllerFactory<>(ThemenController.class, ThemenView.class, "themen"),
+		new ViewControllerFactory<>(FrageErstellenController.class, FrageErstellenView.class, "frage-erstellen"),
+		new ViewControllerFactory<>(LernkarteErstellenController.class, LernkarteErstellenView.class, "lernkarte-erstellen"),
+		new ViewControllerFactory<>(ThemaBearbeitenController.class, ThemaBearbeitenView.class, "thema-bearbeiten"),
+		new ViewControllerFactory<>(ThemaErstellenController.class, ThemaErstellenView.class, "thema-erstellen"),
 	};
 
 	// Der Index des Aktuell aktiven controllers.
@@ -87,7 +87,7 @@ public class Navigator {
 
 		// beim initialisieren is das Feld null
 		if (currentController != null) {
-			currentController.controller().close();
+//			currentController.controller().close();
 			currentController.view().dispose();
 		}
 

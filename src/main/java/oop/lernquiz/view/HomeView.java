@@ -5,10 +5,12 @@ import org.eclipse.swt.widgets.Button;
 
 import oop.lernquiz.App;
 import oop.lernquiz.controller.HomeController;
-import oop.lernquiz.controller.IController;
+import org.eclipse.swt.widgets.Composite;
 
-public class HomeView extends GeneralView implements IView {
-	private HomeController controller;
+public class HomeView extends View<HomeController> {
+	protected HomeView(Composite composite) {
+		super(composite);
+	}
 
 	protected void buildUI() {
 		var quizStart = new Button(composite, 0);
@@ -31,11 +33,6 @@ public class HomeView extends GeneralView implements IView {
 		schliessen.addListener(SWT.Selection, ev -> {
 			App.getInstance().getWindow().getShell().dispose();
 		});
-	}
-
-	@Override
-	public void setController(IController controller) {
-		this.controller = (HomeController) controller;
 	}
 
 	@Override

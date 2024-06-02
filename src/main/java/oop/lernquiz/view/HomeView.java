@@ -7,6 +7,9 @@ import oop.lernquiz.App;
 import oop.lernquiz.controller.HomeController;
 import org.eclipse.swt.widgets.Composite;
 
+/**
+ * @author Simon Resing
+ */
 public class HomeView extends View<HomeController> {
 	protected HomeView(Composite composite) {
 		super(composite);
@@ -36,8 +39,4 @@ public class HomeView extends View<HomeController> {
 		});
 	}
 
-	@Override
-	public void dispose() {
-		composite.dispose();
-	}
 }

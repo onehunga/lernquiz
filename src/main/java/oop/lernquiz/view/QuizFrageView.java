@@ -11,6 +11,9 @@ import org.eclipse.swt.widgets.Label;
 
 import java.util.ArrayList;
 
+/**
+ * @author Gor Baghdasaryan
+ */
 public class QuizFrageView extends View<QuizFrageController> {
 	private static final Color RICHTIGE_FARBE = new Color(53, 252, 35, 255);
 	private static final Color FALSCHE_FARBE = new Color(252, 42, 63, 255);

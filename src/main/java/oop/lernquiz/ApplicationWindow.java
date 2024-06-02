@@ -4,6 +4,9 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
+/**
+ * @author Julian Michels
+ */
 public class ApplicationWindow {
 	private Display display;
 	private Shell shell;

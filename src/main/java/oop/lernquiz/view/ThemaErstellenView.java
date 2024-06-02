@@ -7,6 +7,9 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Text;
 
+/**
+ * @author Gor Baghdasaryan
+ */
 public class ThemaErstellenView extends View<ThemaErstellenController> {
 	protected Text themaElement;
 

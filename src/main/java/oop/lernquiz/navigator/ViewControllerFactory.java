@@ -8,6 +8,9 @@ import org.eclipse.swt.widgets.Composite;
 
 import java.lang.reflect.InvocationTargetException;
 
+/**
+ * @author Julian Michels
+ */
 public class ViewControllerFactory<C extends Controller<V>, V extends View<C>> {
 	private final Class<C> controllerClass;
 	private final Class<V> viewClass;

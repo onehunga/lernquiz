@@ -9,6 +9,9 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
+/**
+ * @author Julian Michels
+ */
 public class LernkarteBewertenView extends View<LernkarteBewertenController> {
 	private Text kartenText;
 	private Text antwortText;

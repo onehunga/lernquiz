@@ -2,6 +2,9 @@ package oop.lernquiz.quiz;
 
 import oop.lernquiz.model.Frage;
 
+/**
+ * @author Julian Michels
+ */
 public class FrageElement extends FilterElement<Frage> {
 	private Frage frage;
 

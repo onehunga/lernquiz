@@ -7,6 +7,9 @@ import oop.lernquiz.store.FragenFactory;
 import oop.lernquiz.store.ThemaStore;
 import oop.lernquiz.view.FrageBearbeitenView;
 
+/**
+ * @author Johanna Hrouda
+ */
 public class FrageBearbeitenController extends Controller<FrageBearbeitenView> {
 	private FrageBearbeitenProps props;
 	

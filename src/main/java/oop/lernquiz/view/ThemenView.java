@@ -13,6 +13,9 @@ import org.eclipse.swt.widgets.*;
 
 import java.util.List;
 
+/**
+ * @author Simon Resing
+ */
 public class ThemenView extends View<ThemenController> {
 	private Composite themen;
 	private Composite[] felder;

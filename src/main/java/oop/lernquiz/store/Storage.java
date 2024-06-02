@@ -8,6 +8,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
+/**
+ * @author Simon Resing
+ */
 public class Storage {
 	private static Storage instance;
 	private Path storageFile;

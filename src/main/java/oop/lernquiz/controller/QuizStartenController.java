@@ -9,6 +9,9 @@ import oop.lernquiz.view.QuizStartenView;
 
 import java.util.List;
 
+/**
+ * @author Simon Resing
+ */
 public class QuizStartenController extends Controller<QuizStartenView> {
 	private List<Thema> themaModelList;
 

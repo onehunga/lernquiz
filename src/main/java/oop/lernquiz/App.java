@@ -2,6 +2,9 @@ package oop.lernquiz;
 
 import oop.lernquiz.navigator.Navigator;
 
+/**
+ * @author Julian Michels
+ */
 public class App {
 	private static App app;
 

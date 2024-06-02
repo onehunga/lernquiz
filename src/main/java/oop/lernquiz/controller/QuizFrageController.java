@@ -8,6 +8,9 @@ import oop.lernquiz.view.QuizFrageView;
 
 import java.util.Collections;
 
+/**
+ * @author Gor Baghdasaryan
+ */
 public class QuizFrageController extends Controller<QuizFrageView> {
 	private QuizRunner quizRunner;
 	private Frage frage;

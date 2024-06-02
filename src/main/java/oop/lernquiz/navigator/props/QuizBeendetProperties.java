@@ -2,6 +2,9 @@ package oop.lernquiz.navigator.props;
 
 import oop.lernquiz.model.Thema;
 
+/**
+ * @author Johanna Hrouda
+ */
 public class QuizBeendetProperties implements NavigatorProperties {
 	private Thema thema;
 	private int fragen;

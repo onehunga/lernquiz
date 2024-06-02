@@ -6,6 +6,9 @@ import oop.lernquiz.model.Schwierigkeit;
 
 import java.util.ArrayList;
 
+/**
+ * @author Gor Baghdasaryan
+ */
 public class FragenFactory {
 	public static Frage createFrage(String[] fragenDaten) {
 		var antworten = new ArrayList<Antwort>();

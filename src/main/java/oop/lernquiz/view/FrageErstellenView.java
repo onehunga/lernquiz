@@ -5,6 +5,9 @@ import oop.lernquiz.controller.FrageErstellenController;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.*;
 
+/**
+ * @author Johanna Hrouda
+ */
 public class FrageErstellenView extends View<FrageErstellenController> {
 	private FragenViewer fragenViewer;
 

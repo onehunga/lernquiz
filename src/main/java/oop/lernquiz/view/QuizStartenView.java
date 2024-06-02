@@ -11,6 +11,9 @@ import org.eclipse.swt.widgets.Label;
 
 import java.util.List;
 
+/**
+ * @author Simon Resing
+ */
 public class QuizStartenView extends View<QuizStartenController> {
 	Combo themenAuswahl, schwierigkeitsAuswahl;
 	Button istZeitmodus;

@@ -16,6 +16,9 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * @author Johanna Hrouda
+ */
 public class QuizRunner {
 	/**
 	 * Wahrscheinlichkeit im format von 1/x

@@ -9,6 +9,9 @@ import org.eclipse.swt.widgets.*;
 
 import java.util.List;
 
+/**
+ * @author Simon Resing
+ */
 public class SchwachstellenView extends View<SchwachstellenController> {
 	private static final String[] FELDER = {"Thema", "Frage", "Gewichtung"};
 	private Table table;

@@ -6,6 +6,9 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 
+/**
+ * @author Johanna Hrouda
+ */
 public class LernkarteErstellenView extends View<LernkarteErstellenController> {
 	LernkarteViewer lernkarteViewer;
 

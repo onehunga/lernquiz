@@ -2,6 +2,9 @@ package oop.lernquiz.model;
 
 import java.io.Serializable;
 
+/**
+ * @author Gor Baghdasaryan
+ */
 public class Lernkarte implements Serializable {
 	private String name;
 	private String vorderseite;

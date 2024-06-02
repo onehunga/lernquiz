@@ -3,6 +3,9 @@ package oop.lernquiz.navigator.props;
 import oop.lernquiz.model.Frage;
 import oop.lernquiz.quiz.QuizRunner;
 
+/**
+ * @author Johanna Hrouda
+ */
 public class QuizFrageProperties implements NavigatorProperties {
 	private QuizRunner quizRunner;
 	private Frage frage;

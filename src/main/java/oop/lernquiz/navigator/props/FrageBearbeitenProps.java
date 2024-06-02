@@ -3,6 +3,9 @@ package oop.lernquiz.navigator.props;
 import oop.lernquiz.model.Frage;
 import oop.lernquiz.model.Thema;
 
+/**
+ * @author Johanna Hrouda
+ */
 public class FrageBearbeitenProps implements NavigatorProperties {
 	private Frage frage;
 	private Thema thema;

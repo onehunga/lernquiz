@@ -7,6 +7,9 @@ import oop.lernquiz.navigator.props.ThemaBearbeitungsProperties;
 import oop.lernquiz.store.ThemaStore;
 import oop.lernquiz.view.LernkarteBearbeitenView;
 
+/**
+ * @author Johanna Hrouda
+ */
 public class LernkarteBearbeitenController extends Controller<LernkarteBearbeitenView> {
 	private LernkarteBearbeitenProps props;
 	

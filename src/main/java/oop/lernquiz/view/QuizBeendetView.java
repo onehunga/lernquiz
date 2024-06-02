@@ -6,6 +6,9 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 
+/**
+ * @author Gor Baghdasaryan
+ */
 public class QuizBeendetView extends View<QuizBeendetController> {
 	private static final String THEMA_TEMPLATE = "Thema: %s";
 	private static final String FRAGEN_TEMPLATE = "Fragen beantwortet:\t%d";

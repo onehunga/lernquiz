@@ -3,6 +3,9 @@ package oop.lernquiz.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * @author Gor Baghdasaryan
+ */
 public class Frage implements Serializable {
 	
 	private String frage;

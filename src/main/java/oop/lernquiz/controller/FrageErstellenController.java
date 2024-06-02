@@ -1,16 +1,14 @@
 package oop.lernquiz.controller;
 
-import oop.lernquiz.model.Antwort;
-import oop.lernquiz.model.Frage;
-import oop.lernquiz.model.Schwierigkeit;
 import oop.lernquiz.navigator.Navigator;
 import oop.lernquiz.navigator.props.ThemaBearbeitungsProperties;
 import oop.lernquiz.store.FragenFactory;
 import oop.lernquiz.store.ThemaStore;
 import oop.lernquiz.view.FrageErstellenView;
 
-import java.util.ArrayList;
-
+/**
+ * @author Johanna Hrouda
+ */
 public class FrageErstellenController extends Controller<FrageErstellenView> {
 	private ThemaBearbeitungsProperties props;
 

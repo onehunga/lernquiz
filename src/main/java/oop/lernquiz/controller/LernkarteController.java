@@ -7,6 +7,9 @@ import oop.lernquiz.navigator.props.LernkarteProps;
 import oop.lernquiz.quiz.QuizRunner;
 import oop.lernquiz.view.LernkarteView;
 
+/**
+ * @author Julian Michels, Simon Resing
+ */
 public class LernkarteController extends Controller<LernkarteView> {
 	private Lernkarte lernkarte;
 	private QuizRunner quizRunner;
@@ -38,7 +41,4 @@ public class LernkarteController extends Controller<LernkarteView> {
 		this.quizRunner.quizBeenden();
 	}
 
-	@Override
-	public void close() {
-	}
 }

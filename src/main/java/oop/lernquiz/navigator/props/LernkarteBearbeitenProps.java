@@ -3,6 +3,9 @@ package oop.lernquiz.navigator.props;
 import oop.lernquiz.model.Lernkarte;
 import oop.lernquiz.model.Thema;
 
+/**
+ * @author Johanna Hrouda
+ */
 public class LernkarteBearbeitenProps implements NavigatorProperties {
 	private Lernkarte lernkarte;
 	private Thema thema;

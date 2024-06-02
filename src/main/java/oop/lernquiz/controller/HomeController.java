@@ -5,6 +5,9 @@ import oop.lernquiz.navigator.props.QuizStartenProperties;
 import oop.lernquiz.store.ThemaStore;
 import oop.lernquiz.view.HomeView;
 
+/**
+ * @author Simon Resing
+ */
 public class HomeController extends Controller<HomeView> {
 	public void openSchwachstellen() {
 		Navigator.navigateTo("schwachstellen");

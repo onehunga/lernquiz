@@ -6,6 +6,9 @@ import oop.lernquiz.view.*;
 
 import java.util.Stack;
 
+/**
+ * @author Julian Michels
+ */
 public class Navigator {
 	// die besuchten views, werden gespeichert um zu vorherigen seiten zurückkehren zu können
 	private static final Stack<Integer> history = new Stack<>();

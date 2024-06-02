@@ -4,6 +4,9 @@ import oop.lernquiz.navigator.Navigator;
 import oop.lernquiz.store.ThemaStore;
 import oop.lernquiz.view.ThemaErstellenView;
 
+/**
+ * @author Gor Baghdasaryan
+ */
 public class ThemaErstellenController extends Controller<ThemaErstellenView> {
 
 	public void abbrechen() {

@@ -1,16 +1,16 @@
 package oop.lernquiz.controller;
 
-import oop.lernquiz.model.Frage;
 import oop.lernquiz.model.Schwierigkeit;
 import oop.lernquiz.model.SortierteFrage;
-import oop.lernquiz.model.Thema;
 import oop.lernquiz.navigator.Navigator;
 import oop.lernquiz.store.ThemaStore;
 import oop.lernquiz.view.SchwachstellenView;
 
 import java.util.ArrayList;
-import java.util.List;
 
+/**
+ * @author Simon Resing
+ */
 public class SchwachstellenController extends Controller<SchwachstellenView> {
 
 	public void zurueck() {

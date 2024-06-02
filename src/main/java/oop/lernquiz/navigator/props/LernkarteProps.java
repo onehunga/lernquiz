@@ -5,6 +5,9 @@ import oop.lernquiz.quiz.QuizRunner;
 
 import java.util.Optional;
 
+/**
+ * @author Johanna Hrouda
+ */
 public class LernkarteProps implements NavigatorProperties {
 	private Lernkarte lernkarte;
 	private QuizRunner quizRunner;

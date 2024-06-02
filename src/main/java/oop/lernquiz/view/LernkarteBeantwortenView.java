@@ -10,6 +10,9 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
+/**
+ * @author Simon Resing, Gor Baghdasaryan
+ */
 public class LernkarteBeantwortenView extends View<LernkarteBeantwortenController> {
 	private Text antwortText;
 

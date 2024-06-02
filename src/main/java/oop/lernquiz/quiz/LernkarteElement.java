@@ -2,6 +2,9 @@ package oop.lernquiz.quiz;
 
 import oop.lernquiz.model.Lernkarte;
 
+/**
+ * @author Julian Michels
+ */
 public class LernkarteElement extends FilterElement<Lernkarte>  {
 	private final Lernkarte lernkarte;
 

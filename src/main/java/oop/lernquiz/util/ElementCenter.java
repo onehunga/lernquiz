@@ -2,6 +2,9 @@ package oop.lernquiz.util;
 
 import org.eclipse.swt.widgets.Control;
 
+/**
+ * @author Julian Michels
+ */
 public class ElementCenter {
 	public static void centerElementOnX(Control control, int y) {
 		control.pack();

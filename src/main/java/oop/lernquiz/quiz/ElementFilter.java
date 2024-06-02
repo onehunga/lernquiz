@@ -3,6 +3,9 @@ package oop.lernquiz.quiz;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * @author Julian Michels
+ */
 public class ElementFilter<E, T extends FilterElement<E>> {
 	private long gewicht;
 	private final List<T> elements;

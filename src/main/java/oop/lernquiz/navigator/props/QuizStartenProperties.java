@@ -4,6 +4,9 @@ import oop.lernquiz.model.Thema;
 
 import java.util.List;
 
+/**
+ * @author Johanna Hrouda
+ */
 public class QuizStartenProperties implements NavigatorProperties {
 	private List<Thema> themaModelList;
 

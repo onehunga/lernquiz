@@ -7,6 +7,9 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 
+/**
+ * @author Johanna Hrouda
+ */
 public class FrageBearbeitenView extends View<FrageBearbeitenController> {
 	private FragenViewer fragenViewer;
 	

@@ -6,6 +6,9 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
+/**
+ * @author Johanna Hrouda
+ */
 public class LernkarteViewer {
 	private Text name;
 	private Text inhalt;

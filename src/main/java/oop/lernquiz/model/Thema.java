@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Gor Baghdasaryan
+ */
 public class Thema implements Serializable {
 	private String name;
 	private final String beschreibung;

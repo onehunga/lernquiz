@@ -3,6 +3,9 @@ package oop.lernquiz.controller;
 import oop.lernquiz.navigator.props.LernkarteProps;
 import oop.lernquiz.view.LernkarteBewertenView;
 
+/**
+ * @author Simon Resing
+ */
 public class LernkarteBewertenController extends Controller<LernkarteBewertenView> {
 	private LernkarteProps props;
 

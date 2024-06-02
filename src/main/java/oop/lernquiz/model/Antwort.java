@@ -2,6 +2,9 @@ package oop.lernquiz.model;
 
 import java.io.Serializable;
 
+/**
+ * @author Gor Baghdasaryan
+ */
 public class Antwort implements Serializable {
 	private String antwort;
 	private boolean richtig;

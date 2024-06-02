@@ -4,6 +4,9 @@ import oop.lernquiz.navigator.Navigator;
 import oop.lernquiz.navigator.props.QuizBeendetProperties;
 import oop.lernquiz.view.QuizBeendetView;
 
+/**
+ * @author Gor Baghdasaryan
+ */
 public class QuizBeendetController extends Controller<QuizBeendetView> {
 	private QuizBeendetProperties properties;
 

@@ -6,6 +6,9 @@ import oop.lernquiz.navigator.props.ThemaBearbeitungsProperties;
 import oop.lernquiz.store.ThemaStore;
 import oop.lernquiz.view.ThemenView;
 
+/**
+ * @author Simon Resing
+ */
 public class ThemenController extends Controller<ThemenView> {
 	private ThemenController() {}
 

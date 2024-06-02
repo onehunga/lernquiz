@@ -11,6 +11,9 @@ import org.eclipse.swt.widgets.*;
 
 import java.util.List;
 
+/**
+ * @author Julian Michels
+ */
 public class ThemaBearbeitenView extends View<ThemaBearbeitenController> {
 	private TabFolder root;
 	private TabItem fragen, lernkarten;
@@ -25,7 +28,7 @@ public class ThemaBearbeitenView extends View<ThemaBearbeitenController> {
 	protected void buildUI() {
 		this.root = new TabFolder(this.composite, SWT.NONE);
 		var rootData = new GridData(SWT.FILL, SWT.FILL, false, true);
-		rootData.widthHint = 500;
+		rootData.widthHint = 550;
 		rootData.heightHint = this.composite.getSize().y;
 		root.setLayoutData(rootData);
 
@@ -78,7 +81,7 @@ public class ThemaBearbeitenView extends View<ThemaBearbeitenController> {
 		scroll.setLayout(new GridLayout(1, false));
 		scroll.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
-		data.setLayout(new GridLayout(2, false));
+		data.setLayout(new GridLayout(3, false));
 		data.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
 		item.setControl(wrapper);
@@ -86,10 +89,13 @@ public class ThemaBearbeitenView extends View<ThemaBearbeitenController> {
 
 	public void setFragen(List<Frage> fragen) {
 		var textData = new GridData(SWT.FILL, SWT.FILL, true, false);
-		textData.widthHint = 200;
+		textData.widthHint = 166;
 
 		var editData = new GridData(SWT.FILL, SWT.FILL, false, false);
-		editData.widthHint = 200;
+		editData.widthHint = 166;
+
+		var loeschenData = new GridData(SWT.FILL, SWT.FILL, false, false);
+		loeschenData.widthHint = 166;
 		for (var frage : fragen) {
 			var lbl = new Text(fragenListe, SWT.WRAP | SWT.READ_ONLY);
 			lbl.setText(frage.getFrage());
@@ -99,6 +105,11 @@ public class ThemaBearbeitenView extends View<ThemaBearbeitenController> {
 			bearbeiten.setText("Bearbeiten");
 			bearbeiten.setLayoutData(editData);
 			bearbeiten.addListener(SWT.Selection, ignored -> controller.frageBearbeiten(frage));
+
+			var loeschen = new Button(fragenListe, 0);
+			loeschen.setText("Löschen");
+			loeschen.setLayoutData(loeschenData);
+			loeschen.addListener(SWT.Selection, ignored -> controller.frageLoeschen(frage));
 		}
 
 		fragenScroll.setContent(fragenListe);
@@ -109,10 +120,13 @@ public class ThemaBearbeitenView extends View<ThemaBearbeitenController> {
 
 	public void setLernkarten(List<Lernkarte> lernkarten) {
 		var textData = new GridData(SWT.FILL, SWT.FILL, true, false);
-		textData.widthHint = 200;
+		textData.widthHint = 166;
 
 		var editData = new GridData(SWT.FILL, SWT.FILL, false, false);
-		editData.widthHint = 200;
+		editData.widthHint = 166;
+
+		var loeschenData = new GridData(SWT.FILL, SWT.FILL, false, false);
+		loeschenData.widthHint = 166;
 		for (var lernkarte : lernkarten) {
 			var lbl = new Text(lernkartenListe, SWT.WRAP | SWT.READ_ONLY);
 			lbl.setText(lernkarte.getName());
@@ -122,6 +136,11 @@ public class ThemaBearbeitenView extends View<ThemaBearbeitenController> {
 			bearbeiten.setText("Bearbeiten");
 			bearbeiten.setLayoutData(editData);
 			bearbeiten.addListener(SWT.Selection, ignored -> controller.lernkarteBearbeiten(lernkarte));
+
+			var loeschen = new Button(lernkartenListe, 0);
+			loeschen.setText("Löschen");
+			loeschen.setLayoutData(loeschenData);
+			loeschen.addListener(SWT.Selection, ignored -> controller.lernkarteLoeschen(lernkarte));
 		}
 
 		lernkartenScroll.setContent(lernkartenListe);

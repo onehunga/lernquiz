@@ -16,8 +16,6 @@ public class LernkarteErstellenController extends Controller<LernkarteErstellenV
 	public void erstellen(String name, String inhalt) {
 		var lernkarte = new Lernkarte(name, inhalt);
 
-		System.out.println("Lernkarte: " + name);
-
 		ThemaStore.getInstance().addLernkarte(this.props.getThema(), lernkarte);
 
 		Navigator.navigateTo("thema-bearbeiten", this.props);

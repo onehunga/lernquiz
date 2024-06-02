@@ -4,6 +4,9 @@ import oop.lernquiz.controller.ThemenController;
 import oop.lernquiz.model.Thema;
 import oop.lernquiz.util.ElementCenter;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.ScrolledComposite;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.layout.RowData;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.*;
@@ -29,13 +32,16 @@ public class ThemenView extends View<ThemenController> {
 			var layout = new RowLayout(SWT.HORIZONTAL);
 			themen.setLayout(layout);
 
-			felder = new Composite[2];
+			felder = new Composite[3];
 
 			felder[0] = new Composite(themen, SWT.NONE);
 			felder[0].setLayout(new RowLayout(SWT.VERTICAL));
 
 			felder[1] = new Composite(themen, SWT.NONE);
 			felder[1].setLayout(new RowLayout(SWT.VERTICAL));
+
+			felder[2] = new Composite(themen, SWT.NONE);
+			felder[2].setLayout(new RowLayout(SWT.VERTICAL));
 
 			themen.setLocation(50, 50);
 		}
@@ -68,10 +74,15 @@ public class ThemenView extends View<ThemenController> {
 			bearbeiten.addListener(SWT.Selection, ignored -> this.controller.themaBearbeiten(thema));
 			bearbeiten.setLayoutData(layoutData);
 
+			var loeschen = new Button(felder[2], SWT.PUSH);
+			loeschen.setText("Löschen");
+			loeschen.setLayoutData(layoutData);
+			loeschen.addListener(SWT.Selection, ignored -> this.controller.themaLoeschen(thema));
 		}
 
 		felder[0].pack();
 		felder[1].pack();
+		felder[2].pack();
 		this.themen.pack();
 	}
 }

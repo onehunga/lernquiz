@@ -163,6 +163,10 @@ public class ThemaStore {
 		thema.getLernkarten().remove(lernkarte);
 	}
 
+	public void removeThema(Thema thema) {
+		this.themaList.remove(thema);
+	}
+
 	private void loadFromDisk() {
 		this.themaList = Storage.getInstance().read();
 	}

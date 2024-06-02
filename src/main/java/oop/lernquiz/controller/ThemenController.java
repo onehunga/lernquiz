@@ -13,6 +13,12 @@ public class ThemenController extends Controller<ThemenView> {
 		Navigator.navigateTo("thema-bearbeiten", new ThemaBearbeitungsProperties(thema));
 	}
 
+	public void themaLoeschen(Thema thema) {
+		ThemaStore.getInstance().removeThema(thema);
+
+		Navigator.navigateTo("themen");
+	}
+
 	public void themaErstellen() {
 		Navigator.navigateTo("thema-erstellen");
 	}

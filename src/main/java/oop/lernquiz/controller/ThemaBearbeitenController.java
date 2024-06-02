@@ -41,6 +41,18 @@ public class ThemaBearbeitenController extends Controller<ThemaBearbeitenView> {
 		Navigator.navigateTo("lernkarte-bearbeiten", new LernkarteBearbeitenProps(lernkarte, this.props.getThema()));
 	}
 
+	public void frageLoeschen(Frage frage) {
+		ThemaStore.getInstance().removeFrage(this.props.getThema(), frage);
+
+		this.view.setFragen(this.props.getThema().getFragen());
+	}
+
+	public void lernkarteLoeschen(Lernkarte lernkarte) {
+		ThemaStore.getInstance().removeLernkarte(this.props.getThema(), lernkarte);
+
+		this.view.setLernkarten(this.props.getThema().getLernkarten());
+	}
+
 	public void speichern() {
 		Storage.getInstance().write();
 

@@ -16,9 +16,10 @@ public class ThemaErstellenView extends View<ThemaErstellenController> {
 
 	@Override
 	protected void buildUI() {
-		themaElement = new Text(composite, SWT.BORDER | SWT.MULTI);
-
-		ElementCenter.centerElementOnX(themaElement, 200);
+		themaElement = new Text(composite, SWT.BORDER);
+		themaElement.setLocation(300, 200);
+		themaElement.pack();
+		themaElement.setSize(200, 40);
 
 		var abbrechen = new Button(composite, 0);
 		abbrechen.setText("Abbrechen");

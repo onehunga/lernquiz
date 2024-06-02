@@ -62,11 +62,7 @@ public class FragenFilter {
 		}
 	}
 
-	public void zustand() {
-		System.out.println("Gesamt gewicht " + this.gewicht);
-
-		for (Frage frage : fragen) {
-			System.out.println("Frage: " + frage.getFrage() + " Gewicht: " + frage.getGewicht());
-		}
+	public int getElementCount() {
+		return this.fragen.size();
 	}
 }

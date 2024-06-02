@@ -10,6 +10,7 @@ import oop.lernquiz.navigator.props.LernkarteProps;
 import oop.lernquiz.navigator.props.QuizBeendetProperties;
 import oop.lernquiz.navigator.props.QuizFrageProperties;
 import oop.lernquiz.store.Storage;
+import oop.lernquiz.util.PopupHandler;
 
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
@@ -82,6 +83,13 @@ public class QuizRunner {
 	}
 
 	public void quizStarten() {
+		if (filter.getElementCount() == 0) {
+			var popup = new PopupHandler(App.getInstance().getWindow().getDisplay(), "Keine Fragen gefunden in der Auswahl");
+			popup.run();
+			Navigator.navigateTo("home");
+			return;
+		}
+
 		stelleFrage();
 	}
 

@@ -7,6 +7,7 @@ import org.eclipse.swt.layout.RowData;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
 public class LernkarteBeantwortenView extends View<LernkarteBeantwortenController> {
@@ -18,6 +19,11 @@ public class LernkarteBeantwortenView extends View<LernkarteBeantwortenControlle
 
 	@Override
 	protected void buildUI() {
+		var lbl = new Label(composite, SWT.NONE);
+		lbl.setText("Wie lautet der Inhalt der Lernkarte?");
+		lbl.setLocation(150, 60);
+		lbl.pack();
+
 		var roc = new Composite(this.composite, SWT.NONE);
 		roc.setLayout(new RowLayout(SWT.VERTICAL));
 		antwortText = new Text(roc, SWT.WRAP);
@@ -36,10 +42,5 @@ public class LernkarteBeantwortenView extends View<LernkarteBeantwortenControlle
 		beendenButton.addListener(SWT.Selection, ignored -> this.controller.abbrechen());
 		beendenButton.setText("Beenden");
 		beendenButton.setBounds(680, 400, 100, 40);
-	}
-
-	@Override
-	public void dispose() {
-		this.composite.dispose();
 	}
 }

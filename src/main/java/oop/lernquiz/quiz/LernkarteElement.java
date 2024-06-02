@@ -3,7 +3,7 @@ package oop.lernquiz.quiz;
 import oop.lernquiz.model.Lernkarte;
 
 public class LernkarteElement extends FilterElement<Lernkarte>  {
-	private Lernkarte lernkarte;
+	private final Lernkarte lernkarte;
 
 	public LernkarteElement(Lernkarte lernkarte) {
 		this.lernkarte = lernkarte;
@@ -26,6 +26,6 @@ public class LernkarteElement extends FilterElement<Lernkarte>  {
 		lernkarte.setAntworten(lernkarte.getAntworten() + 1);
 		lernkarte.setGesamtBewertung(lernkarte.getGesamtBewertung() + wert);
 
-		return this.getGewicht() + alt;
+		return this.getGewicht() - alt;
 	}
 }

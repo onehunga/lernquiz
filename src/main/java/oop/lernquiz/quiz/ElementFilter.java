@@ -5,7 +5,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class ElementFilter<E, T extends FilterElement<E>> {
 	private long gewicht;
-	private List<T> elements;
+	private final List<T> elements;
 
 	public ElementFilter(List<T> elements) {
 		this.elements = elements;

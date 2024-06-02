@@ -2,8 +2,11 @@ package oop.lernquiz.view;
 
 import oop.lernquiz.controller.LernkarteBewertenController;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
 public class LernkarteBewertenView extends View<LernkarteBewertenController> {
@@ -19,11 +22,29 @@ public class LernkarteBewertenView extends View<LernkarteBewertenController> {
 	protected void buildUI() {
 		final int textFlags = SWT.BORDER | SWT.V_SCROLL | SWT.WRAP | SWT.READ_ONLY | SWT.MULTI;
 
+		var kartenLabel = new Label(composite, SWT.NONE);
+		kartenLabel.setText("Karten Inhalt");
+		kartenLabel.setLocation(100, 60);
+		kartenLabel.pack();
+
+		var antwortLabel = new Label(composite, SWT.NONE);
+		antwortLabel.setText("Deine Antwort");
+		antwortLabel.setLocation(450, 60);
+		antwortLabel.pack();
+
 		kartenText = new Text(this.composite, textFlags);
 		antwortText = new Text(this.composite, textFlags);
+		kartenText.setLocation(100, 100);
+		antwortText.setLocation(450, 100);
+		kartenText.pack();
+		antwortText.pack();
+		kartenText.setSize(250, 200);
+		antwortText.setSize(250, 200);
 
-		kartenText.setBounds(30, 30, 200, 200);
-		antwortText.setBounds(250, 30, 200, 200);
+		var lbl = new Label(this.composite, 0);
+		lbl.setText("Wie ähnlich sind die Inhalte (0-100)");
+		lbl.setLocation(100, 320);
+		lbl.pack();
 
 		bewertenText = new Text(this.composite, 0);
 		bewertenText.setText("0");
@@ -42,7 +63,9 @@ public class LernkarteBewertenView extends View<LernkarteBewertenController> {
 			}
 			e.doit = false;
 		});
+		bewertenText.setLocation(100, 350);
 		bewertenText.pack();
+		bewertenText.setSize(150, 40);
 
 		var bewerten = new Button(this.composite, 0);
 		bewerten.setText("Bewertung abgeben");
@@ -62,17 +85,10 @@ public class LernkarteBewertenView extends View<LernkarteBewertenController> {
 
 	public void setKartenText(String text) {
 		this.kartenText.setText(text);
-		this.kartenText.pack();
-
 	}
 
 	public void setAntwortText(String text) {
 		this.antwortText.setText(text);
-		this.antwortText.pack();
 	}
 
-	@Override
-	public void dispose() {
-		this.composite.dispose();
-	}
 }

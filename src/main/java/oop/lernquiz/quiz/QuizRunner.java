@@ -33,6 +33,10 @@ public class QuizRunner {
 	private Thread zeitThread;
 	private Runnable runnable;
 
+	private int erreichtePunke = 0;
+	private int beantworteteLernkarten = 0;
+	private long lernkartenBewertung = 0;
+
 	public QuizRunner(Thema themaModel, Schwierigkeit schwierigkeit, boolean zeitModus) {
 		this.themaModel = themaModel;
 
@@ -42,7 +46,7 @@ public class QuizRunner {
 		this.lernkarteFilter = new ElementFilter<>(themaModel.getLernkarten().stream().map(LernkarteElement::new).toList());
 
 		this.isTimed = zeitModus;
-		if(zeitModus) {
+		if (zeitModus) {
 			zeitInt = new AtomicInteger(60);
 			zeitThread = new Thread(() -> {
 				try {
@@ -60,6 +64,10 @@ public class QuizRunner {
 	}
 
 	public void frageBeantwortet(Frage frage, boolean richtig) {
+		if (richtig) {
+			this.erreichtePunke += 1;
+		}
+
 		this.filter.bewerte(filter.getElement(frage), richtig ? 1 : 0);
 		if (!richtig) {
 			this.falscheFrageCounter++;
@@ -70,13 +78,15 @@ public class QuizRunner {
 
 		if (isTimed) {
 			this.stelleFrage();
-		}
-		else {
+		} else {
 			App.getInstance().syncExecDelayed(this::stelleFrage, 1000);
 		}
 	}
 
 	public void lernkarteBeantwortet(Lernkarte lernkarte, long bewertung) {
+		this.beantworteteLernkarten += 1;
+		this.lernkartenBewertung += bewertung;
+
 		this.lernkarteFilter.bewerte(lernkarteFilter.getElement(lernkarte), bewertung);
 
 		this.stelleFrage();
@@ -96,13 +106,13 @@ public class QuizRunner {
 	public void quizBeenden() {
 		Storage.getInstance().write();
 
-		if(zeitThread != null) {
+		if (zeitThread != null) {
 			zeitThread.interrupt();
 		}
 
 		// this.filter.zustand();
 		Navigator.navigateTo("quiz-beendet",
-			new QuizBeendetProperties(this.themaModel, this.fragenCounter, this.falscheFrageCounter));
+			new QuizBeendetProperties(this.themaModel, this.fragenCounter, this.falscheFrageCounter, this.erreichtePunke, this.beantworteteLernkarten, this.lernkartenBewertung));
 	}
 
 	private void stelleFrage() {

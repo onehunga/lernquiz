@@ -11,11 +11,13 @@ public class QuizBeendetView extends View<QuizBeendetController> {
 	private static final String FRAGEN_TEMPLATE = "Fragen beantwortet:\t%d";
 	private static final String RICHTIGE_FRAGEN_TEMPLATE = "Davon Richtig:\t\t\t%d";
 	private static final String FALSCHE_FRAGEN_TEMPLATE = "Davon Falsch:\t\t\t%d";
+	private static final String PUNKTESTAND = "Punktestand:\t\t\t%f";
 
 	private Label themaLabel;
 	private Label fragenLabel;
 	private Label richtigeFragenLabel;
 	private Label falscheFragenLabel;
+	private Label punktestandLabel;
 
 	protected QuizBeendetView(Composite composite) {
 		super(composite);
@@ -30,6 +32,9 @@ public class QuizBeendetView extends View<QuizBeendetController> {
 		this.richtigeFragenLabel.setLocation(300, 160);
 		this.falscheFragenLabel = new Label(this.composite, 0);
 		this.falscheFragenLabel.setLocation(300, 195);
+
+		this.punktestandLabel = new Label(this.composite, 0);
+		this.punktestandLabel.setLocation(300, 230);
 
 		var beendenButton = new Button(this.composite, 0);
 		beendenButton.addListener(SWT.Selection, ignored -> this.controller.zurHauptseite());
@@ -53,6 +58,11 @@ public class QuizBeendetView extends View<QuizBeendetController> {
 		this.fragenLabel.pack();
 		this.richtigeFragenLabel.pack();
 		this.falscheFragenLabel.pack();
+	}
+
+	public void punkteStand(float erreichterPunkteStand) {
+		this.punktestandLabel.setText(PUNKTESTAND.formatted(erreichterPunkteStand));
+		this.punktestandLabel.pack();
 	}
 
 	@Override

@@ -24,5 +24,14 @@ public class QuizBeendetController extends Controller<QuizBeendetView> {
 		final int fragen = this.properties.getFragen();
 		final int falscheFragen = this.properties.getFalsch();
 		this.view.setFragen(fragen, fragen - falscheFragen, falscheFragen);
+
+		final int erreichtePunkte = this.properties.getPunkte();
+		float prozent = 1;
+		if (this.properties.getLernkarten() != 0) {
+			prozent = (float) this.properties.getLernkartenBewertung() / (float) this.properties.getLernkarten();
+			prozent = prozent / 100;
+		}
+
+		this.view.punkteStand((float) erreichtePunkte * prozent);
 	}
 }

@@ -33,7 +33,7 @@ public class GeneralViewControllerFactory<C extends Controller<V>, V extends Vie
 				controllerConstructor.setAccessible(true);
 				controller = controllerConstructor.newInstance();
 			} else {
-				var controllerConstructor = controllerClass.getDeclaredConstructor(NavigatorProperties.class);
+				var controllerConstructor = controllerClass.getDeclaredConstructor(properties.getClass());
 				controllerConstructor.setAccessible(true);
 				controller = controllerConstructor.newInstance(properties);
 			}

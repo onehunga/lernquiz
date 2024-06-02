@@ -2,6 +2,7 @@ package oop.lernquiz.controller;
 
 import oop.lernquiz.model.Thema;
 import oop.lernquiz.navigator.Navigator;
+import oop.lernquiz.navigator.props.ThemaBearbeitungsProperties;
 import oop.lernquiz.store.ThemaStore;
 import oop.lernquiz.view.IView;
 import oop.lernquiz.view.ThemenView;
@@ -10,7 +11,7 @@ public class ThemenController extends Controller<ThemenView> {
 	private ThemenController() {}
 
 	public void themaBearbeiten(Thema thema) {
-		Navigator.navigateTo("thema-bearbeiten");
+		Navigator.navigateTo("thema-bearbeiten", new ThemaBearbeitungsProperties(thema));
 	}
 
 	public void themaErstellen() {

@@ -39,16 +39,12 @@ public class LernkarteErstellenView extends View<LernkarteErstellenController> {
 		var abbrechen = new Button(composite, 0);
 		abbrechen.setText("Abbrechen");
 		abbrechen.setBounds(540, 400, 100, 40);
-		abbrechen.addListener(SWT.Selection, ev -> {
-			controller.erstellen();
-		});
+		abbrechen.addListener(SWT.Selection, ev -> controller.abbrechen());
 
 		var erstellen = new Button(composite, 0);
 		erstellen.setText("Erstellen");
 		erstellen.setBounds(680, 400, 100, 40);
-		erstellen.addListener(SWT.Selection, ev -> {
-			controller.abbrechen();
-		});
+		erstellen.addListener(SWT.Selection, ev -> controller.erstellen(name.getText(), inhalt.getText()));
 	}
 
 	@Override

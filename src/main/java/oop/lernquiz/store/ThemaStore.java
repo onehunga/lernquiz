@@ -122,6 +122,31 @@ public class ThemaStore {
 		return themaList;
 	}
 
+	/**
+	 * fügt ein Thema hinzu, wenn kein Thema mit dem Namen existiert
+	 *
+	 * @return true wenn das thema erstellt wurde
+	 */
+	public boolean addThema(String name) {
+		for (Thema thema : themaList) {
+			if (thema.getName().equals(name)) {
+				return false;
+			}
+		}
+
+		themaList.add(new Thema(name, ""));
+
+		return true;
+	}
+
+	public void addFrage(Thema thema, Frage frage) {
+		thema.getFragen().add(frage);
+	}
+
+	public void addLernkarte(Thema thema, Lernkarte lernkarte) {
+		thema.getLernkarten().add(lernkarte);
+	}
+
 	public static ThemaStore getInstance() {
 		if (instance == null) {
 			instance = new ThemaStore();

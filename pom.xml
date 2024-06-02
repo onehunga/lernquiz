@@ -117,7 +117,19 @@
                                 <mainClass>oop.lernquiz.App</mainClass>
                             </manifest>
                         </archive>
+                        <descriptorRefs>
+                            <descriptorRef>jar-with-dependencies</descriptorRef>
+                        </descriptorRefs>
                     </configuration>
+                    <executions>
+                        <execution>
+                            <id>jar-with-dependencies</id>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>single</goal>
+                            </goals>
+                        </execution>
+                    </executions>
                 </plugin>
                 <plugin>
                     <artifactId>maven-install-plugin</artifactId>

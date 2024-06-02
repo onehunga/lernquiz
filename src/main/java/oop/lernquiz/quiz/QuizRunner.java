@@ -23,8 +23,8 @@ public class QuizRunner {
 	private static final int WAHRSCHEINLICHKEIT = 10;
 
 	private Thema themaModel;
-	private FragenFilter filter;
-	private LernkarteFilter lernkarteFilter;
+	private ElementFilter<Frage, FrageElement> filter;
+	private ElementFilter<Lernkarte, LernkarteElement> lernkarteFilter;
 	private int fragenCounter = 0;
 	private int falscheFrageCounter = 0;
 
@@ -37,9 +37,9 @@ public class QuizRunner {
 		this.themaModel = themaModel;
 
 		var fragen = filterFragen(themaModel.getFragen(), schwierigkeit);
-		this.filter = new FragenFilter(fragen);
+		this.filter = new ElementFilter<>(fragen.stream().map(FrageElement::new).toList());
 
-		this.lernkarteFilter = new LernkarteFilter(themaModel.getLernkarten());
+		this.lernkarteFilter = new ElementFilter<>(themaModel.getLernkarten().stream().map(LernkarteElement::new).toList());
 
 		this.isTimed = zeitModus;
 		if(zeitModus) {
@@ -60,7 +60,7 @@ public class QuizRunner {
 	}
 
 	public void frageBeantwortet(Frage frage, boolean richtig) {
-		this.filter.beantworte(frage, richtig);
+		this.filter.bewerte(filter.getElement(frage), richtig ? 1 : 0);
 		if (!richtig) {
 			this.falscheFrageCounter++;
 		} else if (isTimed) {
@@ -77,7 +77,7 @@ public class QuizRunner {
 	}
 
 	public void lernkarteBeantwortet(Lernkarte lernkarte, long bewertung) {
-		this.lernkarteFilter.bewerten(lernkarte, bewertung);
+		this.lernkarteFilter.bewerte(lernkarteFilter.getElement(lernkarte), bewertung);
 
 		this.stelleFrage();
 	}
@@ -120,7 +120,7 @@ public class QuizRunner {
 	}
 
 	private Frage getNextFrage() {
-		return filter.nextFrage();
+		return filter.nextElement().get();
 	}
 
 	private List<Frage> filterFragen(List<Frage> fragen, Schwierigkeit schwierigkeit) {
@@ -150,7 +150,7 @@ public class QuizRunner {
 	}
 
 	private Lernkarte getLernkarte() {
-		return this.lernkarteFilter.getLernkarte();
+		return this.lernkarteFilter.nextElement().get();
 	}
 
 	public int getZeitInt() {

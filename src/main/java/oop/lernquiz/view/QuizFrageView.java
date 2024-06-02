@@ -2,6 +2,7 @@ package oop.lernquiz.view;
 
 import oop.lernquiz.controller.QuizFrageController;
 import oop.lernquiz.model.Frage;
+import oop.lernquiz.util.ElementCenter;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Button;
@@ -13,10 +14,13 @@ import java.util.ArrayList;
 public class QuizFrageView extends View<QuizFrageController> {
 	private static final Color RICHTIGE_FARBE = new Color(53, 252, 35, 255);
 	private static final Color FALSCHE_FARBE = new Color(252, 42, 63, 255);
+	private static final String COUNTER = "Zeit Verbleibend %d Sekunden";
 
 	Label fragenLabel;
 	ArrayList<Button> korrekteButtons = new ArrayList<>();
 	Button clickedButton;
+	boolean answered = false;
+	Label counter;
 
 	protected QuizFrageView(Composite composite) {
 		super(composite);
@@ -25,6 +29,7 @@ public class QuizFrageView extends View<QuizFrageController> {
 	@Override
 	protected void buildUI() {
 		fragenLabel = new Label(this.composite, 0);
+		counter = new Label(this.composite, 0);
 
 		var beendenButton = new Button(this.composite, 0);
 		beendenButton.addListener(SWT.Selection, ignored -> this.controller.quizBeenden());
@@ -48,6 +53,12 @@ public class QuizFrageView extends View<QuizFrageController> {
 		this.clickedButton.setBackground(FALSCHE_FARBE);
 	}
 
+	public void setCounter(int time) {
+		counter.setText(COUNTER.formatted(time));
+
+		ElementCenter.centerElementOnX(counter, 400);
+	}
+
 	public void setFrage(Frage frage) {
 		this.fragenLabel.setText(frage.getFrage());
 		this.fragenLabel.pack();
@@ -61,8 +72,11 @@ public class QuizFrageView extends View<QuizFrageController> {
 
 			var btn = new Button(this.composite, 0);
 			btn.addListener(SWT.Selection, ev -> {
-				this.clickedButton = btn;
-				controller.beantworte(antwort.isRichtig());
+				if (!answered) {
+					this.clickedButton = btn;
+					controller.beantworte(antwort.isRichtig());
+					answered = true;
+				}
 			});
 
 			int x = 250;

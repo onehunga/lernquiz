@@ -13,9 +13,9 @@ public class LernkarteController extends Controller<LernkarteView> {
 
 	private Thread navigatorThread;
 
-	public LernkarteController(Lernkarte lernkarte, QuizRunner runner) {
-		this.lernkarte = lernkarte;
-		this.quizRunner = runner;
+	public LernkarteController(LernkarteProps props) {
+		this.lernkarte = props.getLernkarte();
+		this.quizRunner = props.getQuizRunner();
 
 		navigatorThread = App.getInstance().syncExecDelayed(this::beantworten, 120000);
 	}

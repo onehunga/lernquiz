@@ -13,6 +13,7 @@ import oop.lernquiz.store.Storage;
 
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class QuizRunner {
 	/**
@@ -26,23 +27,52 @@ public class QuizRunner {
 	private int fragenCounter = 0;
 	private int falscheFrageCounter = 0;
 
-	public QuizRunner(Thema themaModel, Schwierigkeit schwierigkeit) {
+	private boolean isTimed = false;
+	private AtomicInteger zeitInt;
+	private Thread zeitThread;
+	private Runnable runnable;
+
+	public QuizRunner(Thema themaModel, Schwierigkeit schwierigkeit, boolean zeitModus) {
 		this.themaModel = themaModel;
 
 		var fragen = filterFragen(themaModel.getFragen(), schwierigkeit);
 		this.filter = new FragenFilter(fragen);
 
 		this.lernkarteFilter = new LernkarteFilter(themaModel.getLernkarten());
+
+		this.isTimed = zeitModus;
+		if(zeitModus) {
+			zeitInt = new AtomicInteger(60);
+			zeitThread = new Thread(() -> {
+				try {
+					while (zeitInt.get() > 0) {
+						Thread.sleep(1000);
+						runnable.run();
+						zeitInt.set(zeitInt.get() - 1);
+					}
+					this.quizBeenden();
+				} catch (InterruptedException ignored) {
+				}
+			});
+			zeitThread.start();
+		}
 	}
 
 	public void frageBeantwortet(Frage frage, boolean richtig) {
 		this.filter.beantworte(frage, richtig);
 		if (!richtig) {
 			this.falscheFrageCounter++;
+		} else if (isTimed) {
+			this.zeitInt.getAndAdd(10);
 		}
 		this.fragenCounter++;
 
-		App.getInstance().syncExecDelayed(this::stelleFrage, 1000);
+		if (isTimed) {
+			this.stelleFrage();
+		}
+		else {
+			App.getInstance().syncExecDelayed(this::stelleFrage, 1000);
+		}
 	}
 
 	public void lernkarteBeantwortet(Lernkarte lernkarte, long bewertung) {
@@ -58,9 +88,13 @@ public class QuizRunner {
 	public void quizBeenden() {
 		Storage.getInstance().write();
 
+		if(zeitThread != null) {
+			zeitThread.interrupt();
+		}
+
 		// this.filter.zustand();
 		Navigator.navigateTo("quiz-beendet",
-				new QuizBeendetProperties(this.themaModel, this.fragenCounter, this.falscheFrageCounter));
+			new QuizBeendetProperties(this.themaModel, this.fragenCounter, this.falscheFrageCounter));
 	}
 
 	private void stelleFrage() {
@@ -70,10 +104,10 @@ public class QuizRunner {
 			Navigator.navigateTo("lernkarte", new LernkarteProps(lernkarte, this));
 		} else {
 			Navigator.navigateTo(
-					"quiz-frage",
-					new QuizFrageProperties(
-							this,
-							this.getNextFrage()));
+				"quiz-frage",
+				new QuizFrageProperties(
+					this,
+					this.getNextFrage()));
 		}
 	}
 
@@ -87,16 +121,20 @@ public class QuizRunner {
 		}
 
 		return fragen
-				.stream()
-				.filter(frage -> frage.getSchwierigkeit() == schwierigkeit)
-				.toList();
+			.stream()
+			.filter(frage -> frage.getSchwierigkeit() == schwierigkeit)
+			.toList();
 	}
 
 	/**
-	* gibt an ob, eine Lernkarte, statt einer Frage angezeigt werden soll.
-	*/
+	 * gibt an ob, eine Lernkarte, statt einer Frage angezeigt werden soll.
+	 */
 	private boolean istLernkarte() {
-		if(this.themaModel.getLernkarten().isEmpty()) {
+		if (isTimed) {
+			return false;
+		}
+
+		if (this.themaModel.getLernkarten().isEmpty()) {
 			return false;
 		}
 
@@ -105,5 +143,17 @@ public class QuizRunner {
 
 	private Lernkarte getLernkarte() {
 		return this.lernkarteFilter.getLernkarte();
+	}
+
+	public int getZeitInt() {
+		return zeitInt.get();
+	}
+
+	public void setRunnable(Runnable runnable) {
+		this.runnable = runnable;
+	}
+
+	public boolean isTimed() {
+		return isTimed;
 	}
 }

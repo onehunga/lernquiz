@@ -31,9 +31,9 @@ public class QuizStartenController extends Controller<QuizStartenView> {
 		Navigator.goBack();
 	}
 
-	public void startQuiz(int themaIndex, int schwierigkeit) {
+	public void startQuiz(int themaIndex, int schwierigkeit, boolean zeitModus) {
 		var thema = this.themaModelList.get(themaIndex);
-		new QuizRunner(thema, Schwierigkeit.values()[schwierigkeit]).quizStarten();
+		new QuizRunner(thema, Schwierigkeit.values()[schwierigkeit], zeitModus).quizStarten();
 	}
 
 }

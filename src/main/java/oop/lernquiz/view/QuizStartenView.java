@@ -13,6 +13,7 @@ import java.util.List;
 
 public class QuizStartenView extends View<QuizStartenController> {
 	Combo themenAuswahl, schwierigkeitsAuswahl;
+	Button istZeitmodus;
 
 	protected QuizStartenView(Composite composite) {
 		super(composite);
@@ -22,6 +23,13 @@ public class QuizStartenView extends View<QuizStartenController> {
 	protected void buildUI() {
 		buildThema();
 		buildSchwierigkeitsAuswahl();
+
+		var lbl = new Label(composite, SWT.NONE);
+		lbl.setText("Zeitmodus");
+		lbl.setLocation(25, 120);
+		lbl.pack();
+		istZeitmodus = new Button(composite, SWT.CHECK);
+		istZeitmodus.setBounds(150, 120, 100, 40);
 
 		var zurueck = new Button(composite, 0);
 		zurueck.setText("Zurück");
@@ -33,7 +41,7 @@ public class QuizStartenView extends View<QuizStartenController> {
 		starten.setBounds(680, 400, 100, 40);
 
 		starten.addListener(SWT.Selection, event -> controller.startQuiz(themenAuswahl.getSelectionIndex(),
-			schwierigkeitsAuswahl.getSelectionIndex()));
+			schwierigkeitsAuswahl.getSelectionIndex(), istZeitmodus.getSelection()));
 	}
 
 	private void buildThema() {

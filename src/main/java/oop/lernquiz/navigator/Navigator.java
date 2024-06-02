@@ -24,6 +24,8 @@ public class Navigator {
 		new ViewControllerFactory<>(LernkarteErstellenController.class, LernkarteErstellenView.class, "lernkarte-erstellen"),
 		new ViewControllerFactory<>(ThemaBearbeitenController.class, ThemaBearbeitenView.class, "thema-bearbeiten"),
 		new ViewControllerFactory<>(ThemaErstellenController.class, ThemaErstellenView.class, "thema-erstellen"),
+		new ViewControllerFactory<>(FrageBearbeitenController.class, FrageBearbeitenView.class, "frage-bearbeiten"),
+		new ViewControllerFactory<>(LernkarteBearbeitenController.class, LernkarteBearbeitenView.class, "lernkarte-bearbeiten")
 	};
 
 	// Der Index des Aktuell aktiven controllers.

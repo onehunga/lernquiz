@@ -1,20 +1,21 @@
 package oop.lernquiz.view;
 
 import oop.lernquiz.components.LernkarteViewer;
-import oop.lernquiz.controller.LernkarteErstellenController;
+import oop.lernquiz.controller.LernkarteBearbeitenController;
+import oop.lernquiz.model.Lernkarte;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 
-public class LernkarteErstellenView extends View<LernkarteErstellenController> {
+public class LernkarteBearbeitenView extends View<LernkarteBearbeitenController> {
 	LernkarteViewer lernkarteViewer;
-
-	protected LernkarteErstellenView(Composite composite) {
+	
+	protected LernkarteBearbeitenView(Composite composite) {
 		super(composite);
-
+		
 		lernkarteViewer = new LernkarteViewer(composite);
 	}
-
+	
 	@Override
 	protected void buildUI() {
 		var abbrechen = new Button(composite, 0);
@@ -23,8 +24,12 @@ public class LernkarteErstellenView extends View<LernkarteErstellenController> {
 		abbrechen.addListener(SWT.Selection, ev -> controller.abbrechen());
 
 		var erstellen = new Button(composite, 0);
-		erstellen.setText("Erstellen");
+		erstellen.setText("Speichern");
 		erstellen.setBounds(680, 400, 100, 40);
-		erstellen.addListener(SWT.Selection, ev -> controller.erstellen(lernkarteViewer.getName(), lernkarteViewer.getInhalt()));
+		erstellen.addListener(SWT.Selection, ev -> controller.speichern(lernkarteViewer.getName(), lernkarteViewer.getInhalt()));
+	}
+	
+	public void setLernkarte(Lernkarte lernkarte) {
+		this.lernkarteViewer.setLernkarte(lernkarte);
 	}
 }

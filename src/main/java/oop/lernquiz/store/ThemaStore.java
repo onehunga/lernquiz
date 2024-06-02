@@ -155,6 +155,14 @@ public class ThemaStore {
 		thema.getLernkarten().add(lernkarte);
 	}
 
+	public void removeFrage(Thema thema, Frage frage) {
+		thema.getFragen().remove(frage);
+	}
+
+	public void removeLernkarte(Thema thema, Lernkarte lernkarte) {
+		thema.getLernkarten().remove(lernkarte);
+	}
+
 	private void loadFromDisk() {
 		this.themaList = Storage.getInstance().read();
 	}

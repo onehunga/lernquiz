@@ -2,6 +2,7 @@ package oop.lernquiz.view;
 
 import oop.lernquiz.controller.ThemaBearbeitenController;
 import oop.lernquiz.model.Frage;
+import oop.lernquiz.model.Lernkarte;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.layout.GridData;
@@ -11,8 +12,10 @@ import org.eclipse.swt.widgets.*;
 import java.util.List;
 
 public class ThemaBearbeitenView extends View<ThemaBearbeitenController> {
-	private ScrolledComposite scroll;
-	private Composite fragenListe;
+	private TabFolder root;
+	private TabItem fragen, lernkarten;
+	private ScrolledComposite fragenScroll, lernkartenScroll;
+	private Composite fragenListe, lernkartenListe;
 
 	protected ThemaBearbeitenView(Composite composite) {
 		super(composite);
@@ -20,24 +23,26 @@ public class ThemaBearbeitenView extends View<ThemaBearbeitenController> {
 
 	@Override
 	protected void buildUI() {
-		{
-			this.composite.setLayout(new GridLayout(2, false));
+		this.root = new TabFolder(this.composite, SWT.NONE);
+		var rootData = new GridData(SWT.FILL, SWT.FILL, false, true);
+		rootData.widthHint = 500;
+		rootData.heightHint = this.composite.getSize().y;
+		root.setLayoutData(rootData);
 
-			var first = new Composite(this.composite, SWT.NONE);
-			first.setLayout(new GridLayout(1, false));
-			var data = new GridData(SWT.FILL, SWT.FILL, false, true);
-			data.widthHint = 500;
-			data.heightHint = this.composite.getSize().y;
-			first.setLayoutData(data);
+		this.fragen = new TabItem(this.root, SWT.NONE);
+		this.fragen.setText("Fragen");
+		this.lernkarten = new TabItem(this.root, SWT.NONE);
+		this.lernkarten.setText("Lernkarten");
 
-			scroll = new ScrolledComposite(first, SWT.V_SCROLL);
-			scroll.setLayout(new GridLayout(1, false));
-			scroll.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		this.fragenScroll = new ScrolledComposite(new Composite(root, SWT.NONE), SWT.V_SCROLL);
+		this.lernkartenScroll = new ScrolledComposite(new Composite(this.root, SWT.NONE), SWT.V_SCROLL);
+		this.fragenListe = new Composite(this.fragenScroll, SWT.NONE);
+		this.lernkartenListe = new Composite(this.lernkartenScroll, SWT.NONE);
 
-			fragenListe = new Composite(scroll, SWT.NONE);
-			fragenListe.setLayout(new GridLayout(2, false));
-			fragenListe.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-		}
+		this.composite.setLayout(new GridLayout(2, false));
+		liste(fragenScroll, fragenListe, fragen);
+		liste(lernkartenScroll, lernkartenListe, lernkarten);
+
 		var controls = new Composite(this.composite, SWT.NONE);
 		controls.setLayout(new GridLayout(1, false));
 		var data = new GridData(SWT.FILL, SWT.FILL, false, true);
@@ -66,6 +71,19 @@ public class ThemaBearbeitenView extends View<ThemaBearbeitenController> {
 		speichern.addListener(SWT.Selection, ev -> controller.speichern());
 	}
 
+	private void liste(ScrolledComposite scroll, Composite data, TabItem item) {
+		var wrapper = scroll.getParent();
+		wrapper.setLayout(new GridLayout(1, false));
+
+		scroll.setLayout(new GridLayout(1, false));
+		scroll.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+
+		data.setLayout(new GridLayout(2, false));
+		data.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+
+		item.setControl(wrapper);
+	}
+
 	public void setFragen(List<Frage> fragen) {
 		var textData = new GridData(SWT.FILL, SWT.FILL, true, false);
 		textData.widthHint = 200;
@@ -80,11 +98,35 @@ public class ThemaBearbeitenView extends View<ThemaBearbeitenController> {
 			var bearbeiten = new Button(fragenListe, 0);
 			bearbeiten.setText("Bearbeiten");
 			bearbeiten.setLayoutData(editData);
+			bearbeiten.addListener(SWT.Selection, ignored -> controller.frageBearbeiten(frage));
 		}
 
-		scroll.setContent(fragenListe);
-		scroll.setExpandHorizontal(true);
-		scroll.setExpandVertical(true);
-		scroll.setMinSize(fragenListe.computeSize(SWT.DEFAULT, SWT.DEFAULT));
+		fragenScroll.setContent(fragenListe);
+		fragenScroll.setExpandHorizontal(true);
+		fragenScroll.setExpandVertical(true);
+		fragenScroll.setMinSize(fragenListe.computeSize(SWT.DEFAULT, SWT.DEFAULT));
+	}
+
+	public void setLernkarten(List<Lernkarte> lernkarten) {
+		var textData = new GridData(SWT.FILL, SWT.FILL, true, false);
+		textData.widthHint = 200;
+
+		var editData = new GridData(SWT.FILL, SWT.FILL, false, false);
+		editData.widthHint = 200;
+		for (var lernkarte : lernkarten) {
+			var lbl = new Text(lernkartenListe, SWT.WRAP | SWT.READ_ONLY);
+			lbl.setText(lernkarte.getName());
+			lbl.setLayoutData(textData);
+
+			var bearbeiten = new Button(lernkartenListe, 0);
+			bearbeiten.setText("Bearbeiten");
+			bearbeiten.setLayoutData(editData);
+			bearbeiten.addListener(SWT.Selection, ignored -> controller.lernkarteBearbeiten(lernkarte));
+		}
+
+		lernkartenScroll.setContent(lernkartenListe);
+		lernkartenScroll.setExpandHorizontal(true);
+		lernkartenScroll.setExpandVertical(true);
+		lernkartenScroll.setMinSize(lernkartenScroll.computeSize(SWT.DEFAULT, SWT.DEFAULT));
 	}
 }

@@ -22,6 +22,10 @@ public class HomeController implements IController {
 		Navigator.navigateTo("schwachstellen");
 	}
 
+	public void openThemen() {
+		Navigator.navigateTo("themen");
+	}
+
 	public void openQuizStarten() {
 		Navigator.navigateTo("quiz-starten", new QuizStartenProperties(ThemaStore.getInstance().getThemen()));
 	}

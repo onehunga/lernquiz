@@ -1,6 +1,8 @@
 package oop.lernquiz.navigator;
 
+import oop.lernquiz.controller.*;
 import oop.lernquiz.navigator.props.NavigatorProperties;
+import oop.lernquiz.view.*;
 
 import java.util.Stack;
 
@@ -17,6 +19,11 @@ public class Navigator {
 		new LernkarteViewControllerFactory(),
 		new LernkarteBeantwortenViewControllerFactory(),
 		new LernkarteBewertenViewControllerFactory(),
+		new GeneralViewControllerFactory<>(ThemenController.class, ThemenView.class, "themen"),
+		new GeneralViewControllerFactory<>(FrageErstellenController.class, FrageErstellenView.class, "frage-erstellen"),
+		new GeneralViewControllerFactory<>(LernkarteErstellenController.class, LernkarteErstellenView.class, "lernkarte-erstellen"),
+		new GeneralViewControllerFactory<>(ThemaBearbeitenController.class, ThemaBearbeitenView.class, "thema-bearbeiten"),
+		new GeneralViewControllerFactory<>(ThemaErstellenController.class, ThemaErstellenView.class, "thema-erstellen"),
 	};
 
 	// Der Index des Aktuell aktiven controllers.

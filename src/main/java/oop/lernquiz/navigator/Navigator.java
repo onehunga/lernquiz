@@ -10,7 +10,7 @@ public class Navigator {
 	// die besuchten views, werden gespeichert um zu vorherigen seiten zurückkehren zu können
 	private static final Stack<Integer> history = new Stack<>();
 	private static ViewController currentController;
-	private static final ViewControllerFactory[] factories = {
+	private static final ViewControllerFactory<?, ?>[] factories = {
 		new ViewControllerFactory<>(HomeController.class, HomeView.class, "home"),
 		new ViewControllerFactory<>(SchwachstellenController.class, SchwachstellenView.class, "schwachstellen"),
 		new ViewControllerFactory<>(QuizStartenController.class, QuizStartenView.class, "quiz-starten"),
@@ -25,7 +25,8 @@ public class Navigator {
 		new ViewControllerFactory<>(ThemaBearbeitenController.class, ThemaBearbeitenView.class, "thema-bearbeiten"),
 		new ViewControllerFactory<>(ThemaErstellenController.class, ThemaErstellenView.class, "thema-erstellen"),
 		new ViewControllerFactory<>(FrageBearbeitenController.class, FrageBearbeitenView.class, "frage-bearbeiten"),
-		new ViewControllerFactory<>(LernkarteBearbeitenController.class, LernkarteBearbeitenView.class, "lernkarte-bearbeiten")
+		new ViewControllerFactory<>(LernkarteBearbeitenController.class, LernkarteBearbeitenView.class, "lernkarte-bearbeiten"),
+		new ViewControllerFactory<>(SchwachstellenController.class, SchwachstellenView.class, "schwachstellen")
 	};
 
 	// Der Index des Aktuell aktiven controllers.

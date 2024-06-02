@@ -21,6 +21,7 @@ public class HomeView extends View<HomeController> {
 		var schwachstellen = new Button(composite, 0);
 		schwachstellen.setText("Schwachstellen");
 		schwachstellen.setBounds(340, 220, 120, 40);
+		schwachstellen.addListener(SWT.Selection, ignored -> controller.openSchwachstellen());
 
 		var themen = new Button(composite, 0);
 		themen.setText("Themen");

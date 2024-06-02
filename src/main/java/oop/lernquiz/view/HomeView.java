@@ -23,6 +23,7 @@ public class HomeView extends GeneralView implements IView {
 		var themen = new Button(composite, 0);
 		themen.setText("Themen");
 		themen.setBounds(340, 290, 120, 40);
+		themen.addListener(SWT.Selection, ignored -> this.controller.openThemen());
 
 		var schliessen = new Button(composite, 0);
 		schliessen.setText("Beenden");

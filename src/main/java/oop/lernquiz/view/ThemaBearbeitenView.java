@@ -75,7 +75,6 @@ public class ThemaBearbeitenView extends View<ThemaBearbeitenController> {
 		textData.widthHint = 200;
 
 		var editData = new GridData(SWT.FILL, SWT.FILL, false, false);
-		
 		editData.widthHint = 200;
 		for (var frage : fragen) {
 			var lbl = new Text(fragenListe, SWT.WRAP | SWT.READ_ONLY);

@@ -1,8 +1,10 @@
 package oop.lernquiz.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Frage {
+public class Frage implements Serializable {
+	
 	private String frage;
 	private ArrayList<Antwort> antworten;
 	private Schwierigkeit schwierigkeit;

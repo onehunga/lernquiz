@@ -1,6 +1,8 @@
 package oop.lernquiz.model;
 
-public class Lernkarte {
+import java.io.Serializable;
+
+public class Lernkarte implements Serializable {
 	private String name;
 	private String vorderseite;
 

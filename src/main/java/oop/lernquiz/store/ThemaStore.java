@@ -8,8 +8,13 @@ import java.util.List;
 public class ThemaStore {
 	private static ThemaStore instance;
 
-	private final ArrayList<Thema> themaList;
+	private ArrayList<Thema> themaList;
 
+	private ThemaStore() {
+		loadFromDisk();
+	}
+
+	/*
 	private ThemaStore() {
 		this.themaList = new ArrayList<>();
 
@@ -117,6 +122,7 @@ public class ThemaStore {
 			)), Schwierigkeit.LEICHT)
 		));
 	}
+	*/
 
 	public List<Thema> getThemen() {
 		return themaList;
@@ -136,6 +142,8 @@ public class ThemaStore {
 
 		themaList.add(new Thema(name, ""));
 
+		Storage.getInstance().write();
+
 		return true;
 	}
 
@@ -145,6 +153,14 @@ public class ThemaStore {
 
 	public void addLernkarte(Thema thema, Lernkarte lernkarte) {
 		thema.getLernkarten().add(lernkarte);
+	}
+
+	private void loadFromDisk() {
+		this.themaList = Storage.getInstance().read();
+	}
+
+	public void cancelCached() {
+		loadFromDisk();
 	}
 
 	public static ThemaStore getInstance() {

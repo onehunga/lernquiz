@@ -2,6 +2,8 @@ package oop.lernquiz.controller;
 
 import oop.lernquiz.navigator.Navigator;
 import oop.lernquiz.navigator.props.ThemaBearbeitungsProperties;
+import oop.lernquiz.store.Storage;
+import oop.lernquiz.store.ThemaStore;
 import oop.lernquiz.view.IView;
 import oop.lernquiz.view.ThemaBearbeitenView;
 
@@ -21,10 +23,14 @@ public class ThemaBearbeitenController extends Controller<ThemaBearbeitenView> {
 	}
 
 	public void abbrechen() {
+		ThemaStore.getInstance().cancelCached();
+
 		Navigator.navigateTo("themen");
 	}
 
 	public void speichern() {
+		Storage.getInstance().write();
+
 		Navigator.navigateTo("themen");
 	}
 

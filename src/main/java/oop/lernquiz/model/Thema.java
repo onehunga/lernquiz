@@ -1,9 +1,10 @@
 package oop.lernquiz.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Thema {
+public class Thema implements Serializable {
 	private final String name;
 	private final String beschreibung;
 	private final List<Frage> fragen;

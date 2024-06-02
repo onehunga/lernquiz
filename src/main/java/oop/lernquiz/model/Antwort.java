@@ -1,6 +1,8 @@
 package oop.lernquiz.model;
 
-public class Antwort {
+import java.io.Serializable;
+
+public class Antwort implements Serializable {
 	private String antwort;
 	private boolean richtig;
 

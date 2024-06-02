@@ -2,11 +2,9 @@ package oop.lernquiz.view;
 
 import oop.lernquiz.controller.FrageErstellenController;
 import oop.lernquiz.controller.IController;
+import oop.lernquiz.model.Schwierigkeit;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Text;
+import org.eclipse.swt.widgets.*;
 
 public class FrageErstellenView extends View<FrageErstellenController> {
 	private Label frageLabel;
@@ -16,6 +14,8 @@ public class FrageErstellenView extends View<FrageErstellenController> {
 	private Text[] falscheAntwort;
 	private Label richtigeAntwortLabel;
 	private Label[] falscheAntwortLabel;
+
+	private Combo schwierigkeit;
 
 	protected FrageErstellenView(Composite composite) {
 		super(composite);
@@ -62,20 +62,44 @@ public class FrageErstellenView extends View<FrageErstellenController> {
 			y += 35;
 		}
 
+		var lbl = new Label(composite, SWT.NONE);
+		lbl.setText("Schwierigkeit");
+		lbl.setLocation(25, y);
+		lbl.pack();
+
+		this.schwierigkeit = new Combo(this.composite, SWT.DROP_DOWN | SWT.BORDER);
+		this.schwierigkeit.setLocation(150, y);
+		for (int i = 1; i < Schwierigkeit.values().length; i++) {
+			this.schwierigkeit.add(Schwierigkeit.values()[i].name());
+		}
+		this.schwierigkeit.select(0);
+		this.schwierigkeit.pack();
+
 		var abbrechen = new Button(composite, 0);
 		abbrechen.setText("Abbrechen");
 		abbrechen.setBounds(400, 400, 100, 40);
-		abbrechen.addListener(SWT.Selection, ev -> controller.erstellen());
+		abbrechen.addListener(SWT.Selection, ev -> controller.abbrechen());
 
 		var erstellen = new Button(composite, 0);
 		erstellen.setText("Erstellen");
 		erstellen.setBounds(520, 400, 100, 40);
-		erstellen.addListener(SWT.Selection, ev -> controller.erstellen());
+		erstellen.addListener(SWT.Selection, ev -> controller.erstellen(this.fragenDaten()));
 
 		var weitereErstellen = new Button(composite, 0);
 		weitereErstellen.setText("Weitere Erstellen");
 		weitereErstellen.setBounds(640, 400, 140, 40);
-		weitereErstellen.addListener(SWT.Selection, ev -> controller.weitereErstellen());
+		weitereErstellen.addListener(SWT.Selection, ev -> controller.weitereErstellen(this.fragenDaten()));
+	}
+
+	private String[] fragenDaten() {
+		return new String[]{
+			frageText.getText(),
+			schwierigkeit.getText(),
+			richtigeAntwort.getText(),
+			falscheAntwort[0].getText(),
+			falscheAntwort[1].getText(),
+			falscheAntwort[2].getText()
+		};
 	}
 
 	@Override

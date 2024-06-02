@@ -43,14 +43,14 @@ public class ThemenView extends View<ThemenController> {
 
 		var erstellen = new Button(composite, 0);
 		erstellen.setText("Thema Erstellen");
-		erstellen.setBounds(680, 200, 100, 40);
+		erstellen.setBounds(660, 200, 120, 40);
 		erstellen.addListener(SWT.Selection, ev -> {
 			controller.themaErstellen();
 		});
 
 		var schliessen = new Button(composite, 0);
 		schliessen.setText("Zurück");
-		schliessen.setBounds(680, 400, 100, 40);
+		schliessen.setBounds(660, 400, 120, 40);
 		schliessen.addListener(SWT.Selection, ev -> {
 			controller.zurueck();
 		});

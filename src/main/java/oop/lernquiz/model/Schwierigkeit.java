@@ -1,6 +1,8 @@
 package oop.lernquiz.model;
 
-public enum Schwierigkeit {
+import java.io.Serializable;
+
+public enum Schwierigkeit implements Serializable {
 	ALLE("Alle"),
 	LEICHT("Leicht"),
 	MITTEL("Mittel"),

@@ -1,17 +1,31 @@
 package oop.lernquiz.controller;
 
+import oop.lernquiz.model.Lernkarte;
 import oop.lernquiz.navigator.Navigator;
+import oop.lernquiz.navigator.props.ThemaBearbeitungsProperties;
+import oop.lernquiz.store.ThemaStore;
 import oop.lernquiz.view.IView;
 import oop.lernquiz.view.LernkarteErstellenView;
 
 public class LernkarteErstellenController extends Controller<LernkarteErstellenView> {
+	private ThemaBearbeitungsProperties props;
 
-	public void erstellen() {
-		Navigator.goBack();
+	private LernkarteErstellenController(ThemaBearbeitungsProperties props) {
+		this.props = props;
+	}
+
+	public void erstellen(String name, String inhalt) {
+		var lernkarte = new Lernkarte(name, inhalt);
+
+		System.out.println("Lernkarte: " + name);
+
+		ThemaStore.getInstance().addLernkarte(this.props.getThema(), lernkarte);
+
+		Navigator.navigateTo("thema-bearbeiten", this.props);
 	}
 
 	public void abbrechen() {
-		Navigator.goBack();
+		Navigator.navigateTo("thema-bearbeiten", this.props);
 	}
 
 	@Override

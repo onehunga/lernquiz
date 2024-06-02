@@ -1,7 +1,6 @@
 package oop.lernquiz;
 
 import oop.lernquiz.navigator.Navigator;
-import oop.lernquiz.store.Storage;
 
 public class App {
 	private static App app;

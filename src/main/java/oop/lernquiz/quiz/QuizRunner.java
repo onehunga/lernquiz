@@ -9,6 +9,7 @@ import oop.lernquiz.navigator.Navigator;
 import oop.lernquiz.navigator.props.LernkarteProps;
 import oop.lernquiz.navigator.props.QuizBeendetProperties;
 import oop.lernquiz.navigator.props.QuizFrageProperties;
+import oop.lernquiz.store.Storage;
 
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
@@ -55,6 +56,8 @@ public class QuizRunner {
 	}
 
 	public void quizBeenden() {
+		Storage.getInstance().write();
+
 		// this.filter.zustand();
 		Navigator.navigateTo("quiz-beendet",
 				new QuizBeendetProperties(this.themaModel, this.fragenCounter, this.falscheFrageCounter));

@@ -12,6 +12,9 @@ import oop.lernquiz.view.ThemaBearbeitenView;
 
 import javax.print.attribute.standard.MediaSize;
 
+/**
+ * @author Julian Michels
+ */
 public class ThemaBearbeitenController extends Controller<ThemaBearbeitenView> {
 	private final ThemaBearbeitungsProperties props;
 
@@ -59,11 +62,16 @@ public class ThemaBearbeitenController extends Controller<ThemaBearbeitenView> {
 		Navigator.navigateTo("themen");
 	}
 
+	public void nameAendern(String name) {
+		this.props.getThema().setName(name);
+	}
+
 	@Override
 	public void setView(ThemaBearbeitenView view) {
 		super.setView(view);
 
 		this.view.setFragen(this.props.getThema().getFragen());
 		this.view.setLernkarten(this.props.getThema().getLernkarten());
+		this.view.setThemaName(this.props.getThema().getName());
 	}
 }

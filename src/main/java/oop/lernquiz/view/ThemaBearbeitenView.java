@@ -19,6 +19,7 @@ public class ThemaBearbeitenView extends View<ThemaBearbeitenController> {
 	private TabItem fragen, lernkarten;
 	private ScrolledComposite fragenScroll, lernkartenScroll;
 	private Composite fragenListe, lernkartenListe;
+	private Text themaName;
 
 	protected ThemaBearbeitenView(Composite composite) {
 		super(composite);
@@ -50,6 +51,12 @@ public class ThemaBearbeitenView extends View<ThemaBearbeitenController> {
 		controls.setLayout(new GridLayout(1, false));
 		var data = new GridData(SWT.FILL, SWT.FILL, false, true);
 		controls.setLayoutData(data);
+
+		themaName = new Text(controls, SWT.BORDER);
+
+		var themaNameAendern = new Button(controls, 0);
+		themaNameAendern.setText("Namen Ändern");
+		themaNameAendern.addListener(SWT.Selection, ignored -> this.controller.nameAendern(themaName.getText()));
 
 		var frageErstellen = new Button(controls, 0);
 		frageErstellen .setText("Frage Erstellen");
@@ -85,6 +92,10 @@ public class ThemaBearbeitenView extends View<ThemaBearbeitenController> {
 		data.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
 		item.setControl(wrapper);
+	}
+
+	public void setThemaName(String name) {
+		this.themaName.setText(name);
 	}
 
 	public void setFragen(List<Frage> fragen) {

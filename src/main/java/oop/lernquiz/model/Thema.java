@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Thema implements Serializable {
-	private final String name;
+	private String name;
 	private final String beschreibung;
 	private final List<Frage> fragen;
 	private final List<Lernkarte> lernkarten;
@@ -32,5 +32,9 @@ public class Thema implements Serializable {
 
 	public List<Lernkarte> getLernkarten() {
 		return lernkarten;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 }
